@@ -1,4 +1,5 @@
 import React from 'react'
+import {Navbar as Nav, Button, Row, Col} from 'react-bootstrap'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
@@ -6,8 +7,13 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1>BOILERMAKER</h1>
-    <nav>
+    <Nav
+      style={{
+        backgroundColor: '#24292e',
+        justifyContent: 'center',
+        boxShadow: '1px 1px 1px grey'
+      }}
+    >
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
@@ -18,13 +24,36 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         </div>
       ) : (
         <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
+          <Row>
+            <Col>
+              {/* The navbar will show these links before you log in */}
+
+              <Link style={{color: 'white'}} to="/about">
+                <Button variant="outline-light">About</Button>
+              </Link>
+            </Col>
+            <Col>
+              <Link style={{color: 'white'}} to="/projects">
+                <Button variant="outline-light">Projects</Button>
+              </Link>
+            </Col>
+            <Col>
+              <Link style={{color: 'white'}} to="/connect">
+                <Button variant="outline-light">Connect</Button>
+              </Link>
+            </Col>
+            <Col>
+              <a href="/KyleLeeResume.pdf" download="KyleLeeResume.pdf">
+                <Button variant="outline-light">Resume</Button>
+              </a>
+            </Col>
+            {/* <Link style={{color: 'white'}} to="/manager">
+            Login
+          </Link> */}
+          </Row>
         </div>
       )}
-    </nav>
-    <hr />
+    </Nav>
   </div>
 )
 
