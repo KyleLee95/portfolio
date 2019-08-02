@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 export const PortfolioItem = props => {
-  const {project} = props
+  const {project, user} = props
   return (
     <Card style={{boxShadow: '2px 2px 2px grey'}}>
       <Card.Img variant="top" src={project.image} alt="carouselImage" />
@@ -17,6 +17,7 @@ export const PortfolioItem = props => {
           <a href={project.deployLink} target="_blank">
             <Button variant="dark">Deployed Project</Button>
           </a>
+          {user.id === undefined ? null : <Button variant="dark">Edit</Button>}
         </Row>
       </Card.Body>
     </Card>

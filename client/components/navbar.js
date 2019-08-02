@@ -47,9 +47,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
                 <Button variant="outline-light">Resume</Button>
               </a>
             </Col>
-            {/* <Link style={{color: 'white'}} to="/manager">
-            Login
-          </Link> */}
           </Row>
         </div>
       )}

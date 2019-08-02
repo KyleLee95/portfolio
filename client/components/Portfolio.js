@@ -7,7 +7,9 @@ import axios from 'axios'
 class Portfolio extends Component {
   constructor(props, context) {
     super(props, context)
-    this.state = {}
+    this.state = {
+      projects: []
+    }
   }
 
   async componentDidMount() {
@@ -92,7 +94,7 @@ class Portfolio extends Component {
                 return (
                   <React.Fragment key={project.id}>
                     <br />
-                    <PortfolioItem project={project} />
+                    <PortfolioItem user={this.props.user} project={project} />
                   </React.Fragment>
                 )
               })}
@@ -107,7 +109,7 @@ class Portfolio extends Component {
               xs={12}
               lg={{offset: 3, span: 6}}
             >
-              <strong>Connect</strong>
+              <h2>Connect</h2>
             </Col>
           </Row>
         </div>
@@ -116,6 +118,12 @@ class Portfolio extends Component {
   }
 }
 
-const mapState = state => {}
-const mapDispatch = dispatch => {}
-export const ConnectedPortfolio = connect(null, null)(Portfolio)
+const mapState = state => {
+  return {
+    user: state.user
+  }
+}
+const mapDispatch = dispatch => {
+  return {}
+}
+export const ConnectedPortfolio = connect(mapState, mapDispatch)(Portfolio)
