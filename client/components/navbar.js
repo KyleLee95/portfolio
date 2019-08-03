@@ -27,7 +27,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Row>
             <Col>
               {/* The navbar will show these links before you log in */}
-
               <Link style={{color: 'white'}} to="/about">
                 <Button variant="outline-light">About</Button>
               </Link>

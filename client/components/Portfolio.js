@@ -90,14 +90,18 @@ class Portfolio extends Component {
               lg={{offset: 3, span: 6}}
             >
               <h2>Projects</h2>
-              {this.state.projects.map(project => {
-                return (
-                  <React.Fragment key={project.id}>
-                    <br />
-                    <PortfolioItem user={this.props.user} project={project} />
-                  </React.Fragment>
-                )
-              })}
+              {this.state.projects
+                .sort((a, b) => {
+                  return b.id - a.id
+                })
+                .map(project => {
+                  return (
+                    <React.Fragment key={project.id}>
+                      <br />
+                      <PortfolioItem user={this.props.user} project={project} />
+                    </React.Fragment>
+                  )
+                })}
             </Col>
           </Row>
           {/* Resume && Social Media */}

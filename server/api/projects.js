@@ -2,6 +2,15 @@ const router = require('express').Router()
 const {User, Project} = require('../db/models')
 module.exports = router
 
+router.get('/:id', async (req, res, next) => {
+  try {
+    const project = await Project.findByPk(req.params.id)
+    res.json(project).status(200)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.get('/', async (req, res, next) => {
   try {
     const projects = await Project.findAll()
@@ -11,21 +20,29 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.delete('/', async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.user.id)
-    const projects = await user.getProjects()
-    res.json(projects)
+    const project = await Project.findByPk(req.params.id)
+    await project.destroy()
+    const projects = await Project.findAll()
+    res.status(200).send(projects)
   } catch (err) {
     next(err)
   }
 })
 
-router.put('/', async (req, res, next) => {
+router.put('/edit/:id', async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.user.id)
-    const projects = await user.getProjects()
-    res.json(projects)
+    const project = await Project.findByPk(req.params.id)
+    await project.update({
+      title: req.body.title,
+      description: req.body.description,
+      gitHubLink: req.body.gitHubLink,
+      deployLink: req.body.deployLink,
+      image: req.body.image
+    })
+    const projects = await Project.findAll()
+    res.status(200).send(projects)
   } catch (err) {
     next(err)
   }
@@ -33,8 +50,14 @@ router.put('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.user.id)
-    const projects = await user.getProjects()
+    await Project.create({
+      title: req.body.title,
+      description: req.body.description,
+      gitHubLink: req.body.gitHubLink,
+      deployLink: req.body.deployLink,
+      image: req.body.image
+    })
+    const projects = Project.findAll()
     res.json(projects)
   } catch (err) {
     next(err)
