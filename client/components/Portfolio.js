@@ -68,37 +68,6 @@ class Portfolio extends Component {
               </h4>
             </Col>
           </Row>
-          <hr />
-
-          <Row id="connect">
-            <Col
-              className="text-center"
-              style={{padding: 10}}
-              xs={12}
-              lg={{offset: 3, span: 6}}
-            >
-              <h2>Connect</h2>
-              <Row
-                style={{
-                  justifyContent: 'space-evenly',
-                  alignContent: 'center'
-                }}
-              >
-                <a href="https://github.com/kyleLee95/" target="_blank">
-                  <Image src="/GitHub-Mark-120px-plus.png" alt="github" />
-                </a>
-                <a href="mailto:kyle@kylelee.dev" target="_blank">
-                  <Image src="/closed-envelope-circle.png" alt="email" />
-                </a>
-                <a href="https://www.linkedin.com/in/kylelee2/" target="_blank">
-                  <Image src="/linkedin-logo-button.png" alt="linkedIn" />
-                </a>
-                <a href="/KyleLeeResume.pdf" download="KyleLeeResume.pdf">
-                  <Image src="/resume.png" alt="resume" />
-                </a>
-              </Row>
-            </Col>
-          </Row>
         </div>
       )
     }
