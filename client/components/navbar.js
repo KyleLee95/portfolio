@@ -27,62 +27,23 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         <div>
           <Row style={{justifyContent: 'space-evenly'}}>
             {/* <Col xs={2}> */}
-            <Link
-              style={{color: 'white'}}
-              to="/mood"
-              onClick={() => {
-                const connectWith = document.getElementById('connect')
-                connectWith.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'center'
-                })
-              }}
-            >
+            <Link style={{color: 'white'}} to="/mood">
               <Button variant="outline-light">mood</Button>
             </Link>
             {/* </Col>
             // <Col xs={2}> */}
             {/* The navbar will show these links before you log in */}
             <Link style={{color: 'white'}} to="/about">
-              <Button
-                variant="outline-light"
-                onClick={() => {
-                  const about = document.getElementById('about')
-                  about.scrollIntoView({behavior: 'smooth', block: 'center'})
-                }}
-              >
-                about
-              </Button>
+              <Button variant="outline-light">about</Button>
             </Link>
             {/* </Col>
             <Col xs={2}> */}
             <Link style={{color: 'white'}} to="/programming">
-              <Button
-                variant="outline-light"
-                onClick={() => {
-                  const projects = document.getElementById('projects')
-                  projects.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
-                  })
-                }}
-              >
-                programming
-              </Button>
+              <Button variant="outline-light">programming</Button>
             </Link>
             {/* </Col>
             <Col xs={2}> */}
-            <Link
-              style={{color: 'white'}}
-              to="/connect"
-              onClick={() => {
-                const connectWith = document.getElementById('connect')
-                connectWith.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'center'
-                })
-              }}
-            >
+            <Link style={{color: 'white'}} to="/connect">
               <Button variant="outline-light">connect</Button>
             </Link>
             {/* </Col>
