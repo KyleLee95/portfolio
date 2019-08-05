@@ -28,16 +28,42 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             <Col>
               {/* The navbar will show these links before you log in */}
               <Link style={{color: 'white'}} to="/about">
-                <Button variant="outline-light">About</Button>
+                <Button
+                  variant="outline-light"
+                  onClick={() => {
+                    const about = document.getElementById('about')
+                    about.scrollIntoView({behavior: 'smooth', block: 'center'})
+                  }}
+                >
+                  About
+                </Button>
               </Link>
             </Col>
             <Col>
               <Link style={{color: 'white'}} to="/projects">
-                <Button variant="outline-light">Projects</Button>
+                <Button
+                  variant="outline-light"
+                  onClick={() => {
+                    const projects = document.getElementById('projects')
+                    projects.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'center'
+                    })
+                  }}
+                >
+                  Projects
+                </Button>
               </Link>
             </Col>
             <Col>
-              <Link style={{color: 'white'}} to="/connect">
+              <Link
+                style={{color: 'white'}}
+                to="/connect"
+                onClick={() => {
+                  const connect = document.getElementById('connect')
+                  connect.scrollIntoView({behavior: 'smooth', block: 'center'})
+                }}
+              >
                 <Button variant="outline-light">Connect</Button>
               </Link>
             </Col>

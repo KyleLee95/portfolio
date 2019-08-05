@@ -18,23 +18,22 @@ export const PortfolioItem = props => {
           <a href={project.deployLink} target="_blank">
             <Button variant="dark">Deployed Project</Button>
           </a>
-          {user.id === undefined
-            ? null
-            : ((
-                <Link to={`/edit/project/${project.id}`}>
-                  <Button variant="dark">Edit</Button>
-                </Link>
-              ),
-              (
-                <Button
-                  variant="dark"
-                  onClick={async () => {
-                    await deleteProject(project)
-                  }}
-                >
-                  Delete
-                </Button>
-              ))}
+          {user.id === undefined ? null : (
+            <React.Fragment>
+              <Link to={`/edit/project/${project.id}`}>
+                <Button variant="dark">Edit</Button>
+              </Link>
+
+              <Button
+                variant="dark"
+                onClick={async () => {
+                  await deleteProject(project)
+                }}
+              >
+                Delete
+              </Button>
+            </React.Fragment>
+          )}
         </Row>
       </Card.Body>
     </Card>

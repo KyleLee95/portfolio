@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Row, Col, Spinner, Card} from 'react-bootstrap'
+import {Row, Col, Spinner, Card, Image} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {PortfolioItem} from './PortfolioItem'
@@ -42,7 +42,7 @@ class Portfolio extends Component {
       return (
         <div className="container-fluid" style={{backgroundColor: '#F9F9F9'}}>
           {/* About Me */}
-          <Row>
+          <Row id="about">
             <Col
               className="text-center"
               style={{padding: 10}}
@@ -82,7 +82,7 @@ class Portfolio extends Component {
           </Row>
           {/* Portfolio Projects */}
           <hr />
-          <Row>
+          <Row id="projects">
             <Col
               className="text-center"
               style={{padding: 10}}
@@ -106,7 +106,7 @@ class Portfolio extends Component {
           </Row>
           {/* Resume && Social Media */}
           <hr />
-          <Row>
+          <Row id="connect">
             <Col
               className="text-center"
               style={{padding: 10}}
@@ -114,6 +114,17 @@ class Portfolio extends Component {
               lg={{offset: 3, span: 6}}
             >
               <h2>Connect</h2>
+              <Row style={{justifyContent: 'space-between'}}>
+                <a href="https://github.com/kyleLee95/" target="_blank">
+                  <Image src="/GitHub-Mark-120px-plus.png" />
+                </a>
+                <a href="mailto:kyle@kylelee.dev" target="_blank">
+                  <Image src="/closed-envelope-circle.png" />
+                </a>
+                <a href="https://www.linkedin.com/in/kylelee2/" target="_blank">
+                  <Image src="/linkedin-logo-button.png" />
+                </a>
+              </Row>
             </Col>
           </Row>
         </div>
