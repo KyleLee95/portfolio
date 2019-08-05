@@ -51,7 +51,7 @@ class ContentManager extends Component {
 
   render() {
     if (this.state.projects === undefined) {
-      return null
+      return 'asdfniaosdfnioasdnfio'
     } else {
       return (
         <div className="container-fluid">

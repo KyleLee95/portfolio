@@ -6,9 +6,10 @@ import {
   Login,
   Signup,
   ConnectedEditProject,
-  ConnectedPortfolio
+  ConnectedPortfolio,
+  ConnectedProgramming,
+  ConnectedContentManager
 } from './components'
-import {ConnectedContentManager} from './components/ContentManager'
 import {me} from './store'
 
 /**
@@ -29,11 +30,16 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/manager" component={ConnectedContentManager} />
+        <Route path="/programming" component={ConnectedProgramming} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={ConnectedContentManager} />
-            <Route path="/edit/project/:id" component={ConnectedEditProject} />
+            <Route
+              exact
+              path="/edit/project/:id"
+              component={ConnectedEditProject}
+            />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

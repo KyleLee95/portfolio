@@ -30,31 +30,23 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             <Link style={{color: 'white'}} to="/mood">
               <Button variant="outline-light">mood</Button>
             </Link>
-            {/* </Col>
-            // <Col xs={2}> */}
+
             {/* The navbar will show these links before you log in */}
             <Link style={{color: 'white'}} to="/about">
               <Button variant="outline-light">about</Button>
             </Link>
-            {/* </Col>
-            <Col xs={2}> */}
+
             <Link style={{color: 'white'}} to="/programming">
               <Button variant="outline-light">programming</Button>
             </Link>
-            {/* </Col>
-            <Col xs={2}> */}
+
             <Link style={{color: 'white'}} to="/connect">
               <Button variant="outline-light">connect</Button>
             </Link>
-            {/* </Col>
-            <Col xs={2}> */}
+
             <Link to="/thoughts" style={{color: 'white'}}>
               <Button variant="outline-light">thoughts</Button>
             </Link>
-            {/* </Col>
-            <Col xs={2}> */}
-
-            {/* </Col> */}
           </Row>
         </div>
       )}

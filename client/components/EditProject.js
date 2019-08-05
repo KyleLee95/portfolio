@@ -16,7 +16,6 @@ class EditProject extends Component {
   }
 
   async componentDidMount() {
-    console.log(this.props)
     const project = await axios.get(
       `/api/projects/${Number(this.props.match.params.id)}`
     )
