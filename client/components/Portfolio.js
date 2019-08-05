@@ -32,80 +32,44 @@ class Portfolio extends Component {
               lg={{offset: 3, span: 6}}
             >
               <Spinner animation="grow" />
-              <br />
-              Loading Content...
             </Col>
           </Row>
         </div>
       )
     } else {
       return (
-        <div className="container-fluid" style={{backgroundColor: '#F9F9F9'}}>
+        <div
+          className="container-fluid"
+          style={{
+            backgroundColor: '#F9F9F9',
+            textAlign: 'center',
+            fontFamily: 'serif'
+          }}
+        >
           {/* About Me */}
-          <Row id="about">
-            <Col
-              className="text-center"
-              style={{padding: 10}}
-              xs={12}
-              lg={{offset: 3, span: 6}}
-            >
-              <h2>About Me</h2>
-              <Card style={{boxShadow: '2px 2px 2px grey'}}>
-                <Card.Img src="profile.jpg" fluid="true" />
-                <Card.Body>
-                  The standard Lorem Ipsum passage, used since the 1500s "Lorem
-                  ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                  enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum." Section 1.10.32 of "de Finibus
-                  Bonorum et Malorum", written by Cicero in 45 BC "Sed ut
-                  perspiciatis unde omnis iste natus error sit voluptatem
-                  accusantium doloremque laudantium, totam rem aperiam, eaque
-                  ipsa quae ab illo inventore veritatis et quasi architecto
-                  beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem
-                  quia voluptas sit aspernatur aut odit aut fugit, sed quia
-                  consequuntur magni dolores eos qui ratione voluptatem sequi
-                  nesciunt. Neque porro quisquam est, qui dolorem ipsum quia
-                  dolor sit amet, consectetur, adipisci velit, sed quia non
-                  numquam eius modi tempora incidunt ut labore et dolore magnam
-                  aliquam quaerat voluptatem. Ut enim ad minima veniam, quis
-                  nostrum exercitationem ullam corporis suscipit laboriosam,
-                  nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum
-                  iure repre
-                </Card.Body>
-              </Card>
+
+          <Row id="landing" style={{height: '100vh', display: 'inline-block'}}>
+            <Col style={{textAlign: 'center', paddingTop: '35%'}}>
+              <h1>Kyle Lee</h1>
+              <h4>
+                {' '}
+                <Link style={{color: 'black'}} to="/mood">
+                  mood{' '}
+                </Link>{' '}
+                |
+                <Link style={{color: 'black'}} to="/programming">
+                  {' '}
+                  programming{' '}
+                </Link>{' '}
+                |{' '}
+                <Link style={{color: 'black'}} to="/thoughts">
+                  thoughts
+                </Link>
+              </h4>
             </Col>
           </Row>
-          {/* Portfolio Projects */}
           <hr />
-          <Row id="projects">
-            <Col
-              className="text-center"
-              style={{padding: 10}}
-              xs={12}
-              lg={{offset: 3, span: 6}}
-            >
-              <h2>Projects</h2>
-              {this.state.projects
-                .sort((a, b) => {
-                  return b.id - a.id
-                })
-                .map(project => {
-                  return (
-                    <React.Fragment key={project.id}>
-                      <br />
-                      <PortfolioItem user={this.props.user} project={project} />
-                    </React.Fragment>
-                  )
-                })}
-            </Col>
-          </Row>
-          {/* Resume && Social Media */}
-          <hr />
+
           <Row id="connect">
             <Col
               className="text-center"
@@ -114,7 +78,12 @@ class Portfolio extends Component {
               lg={{offset: 3, span: 6}}
             >
               <h2>Connect</h2>
-              <Row style={{justifyContent: 'space-between'}}>
+              <Row
+                style={{
+                  justifyContent: 'space-evenly',
+                  alignContent: 'center'
+                }}
+              >
                 <a href="https://github.com/kyleLee95/" target="_blank">
                   <Image src="/GitHub-Mark-120px-plus.png" />
                 </a>
@@ -123,6 +92,9 @@ class Portfolio extends Component {
                 </a>
                 <a href="https://www.linkedin.com/in/kylelee2/" target="_blank">
                   <Image src="/linkedin-logo-button.png" />
+                </a>
+                <a href="/KyleLeeResume.pdf" download="KyleLeeResume.pdf">
+                  <Image src="/resume.png" />
                 </a>
               </Row>
             </Col>

@@ -11,7 +11,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       style={{
         backgroundColor: '#24292e',
         justifyContent: 'center',
-        boxShadow: '1px 1px 1px grey'
+        boxShadow: '1px 1px 1px grey',
+        fontFamily: 'serif'
       }}
     >
       {isLoggedIn ? (
@@ -24,54 +25,75 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         </div>
       ) : (
         <div>
-          <Row>
-            <Col>
-              {/* The navbar will show these links before you log in */}
-              <Link style={{color: 'white'}} to="/about">
-                <Button
-                  variant="outline-light"
-                  onClick={() => {
-                    const about = document.getElementById('about')
-                    about.scrollIntoView({behavior: 'smooth', block: 'center'})
-                  }}
-                >
-                  About
-                </Button>
-              </Link>
-            </Col>
-            <Col>
-              <Link style={{color: 'white'}} to="/projects">
-                <Button
-                  variant="outline-light"
-                  onClick={() => {
-                    const projects = document.getElementById('projects')
-                    projects.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'center'
-                    })
-                  }}
-                >
-                  Projects
-                </Button>
-              </Link>
-            </Col>
-            <Col>
-              <Link
-                style={{color: 'white'}}
-                to="/connect"
+          <Row style={{justifyContent: 'space-evenly'}}>
+            {/* <Col xs={2}> */}
+            <Link
+              style={{color: 'white'}}
+              to="/mood"
+              onClick={() => {
+                const connectWith = document.getElementById('connect')
+                connectWith.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'center'
+                })
+              }}
+            >
+              <Button variant="outline-light">mood</Button>
+            </Link>
+            {/* </Col>
+            // <Col xs={2}> */}
+            {/* The navbar will show these links before you log in */}
+            <Link style={{color: 'white'}} to="/about">
+              <Button
+                variant="outline-light"
                 onClick={() => {
-                  const connect = document.getElementById('connect')
-                  connect.scrollIntoView({behavior: 'smooth', block: 'center'})
+                  const about = document.getElementById('about')
+                  about.scrollIntoView({behavior: 'smooth', block: 'center'})
                 }}
               >
-                <Button variant="outline-light">Connect</Button>
-              </Link>
-            </Col>
-            <Col>
-              <a href="/KyleLeeResume.pdf" download="KyleLeeResume.pdf">
-                <Button variant="outline-light">Resume</Button>
-              </a>
-            </Col>
+                about
+              </Button>
+            </Link>
+            {/* </Col>
+            <Col xs={2}> */}
+            <Link style={{color: 'white'}} to="/programming">
+              <Button
+                variant="outline-light"
+                onClick={() => {
+                  const projects = document.getElementById('projects')
+                  projects.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                  })
+                }}
+              >
+                programming
+              </Button>
+            </Link>
+            {/* </Col>
+            <Col xs={2}> */}
+            <Link
+              style={{color: 'white'}}
+              to="/connect"
+              onClick={() => {
+                const connectWith = document.getElementById('connect')
+                connectWith.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'center'
+                })
+              }}
+            >
+              <Button variant="outline-light">connect</Button>
+            </Link>
+            {/* </Col>
+            <Col xs={2}> */}
+            <Link to="/thoughts" style={{color: 'white'}}>
+              <Button variant="outline-light">thoughts</Button>
+            </Link>
+            {/* </Col>
+            <Col xs={2}> */}
+
+            {/* </Col> */}
           </Row>
         </div>
       )}
