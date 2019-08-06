@@ -10,7 +10,9 @@ import {
   ConnectedProgramming,
   ConnectedContentManager,
   About,
-  Mood
+  Mood,
+  ConnectedThoughts,
+  SingleThought
 } from './components'
 import {me} from './store'
 
@@ -29,12 +31,14 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={ConnectedPortfolio} />
+        <Route exact path="/thought/:id" component={SingleThought} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/manager" component={ConnectedContentManager} />
         <Route path="/programming" component={ConnectedProgramming} />
         <Route path="/info" component={About} />
         <Route path="/mood" component={Mood} />
+        <Route path="/thoughts" component={ConnectedThoughts} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

@@ -9,9 +9,13 @@ export class About extends Component {
   }
   render() {
     return (
-      <div className="container-fluid" style={{fontFamily: 'serif'}}>
+      <div
+        className="container-fluid"
+        style={{fontFamily: 'serif', backgroundColor: '#F9F9F9'}}
+      >
         <Row style={{justifyContent: 'center', textAlign: 'center'}}>
           <Col xs={12} sm={12} md={12}>
+            <br />
             <h1>Info</h1>
             <br />
             <Card style={{marginLeft: '25%', width: '50%'}}>
@@ -22,32 +26,32 @@ export class About extends Component {
                   My name is Kyle Lee and I am a novice programmer and aspiring
                   startup founder. My journey into programming started after I
                   finished undergrad (University of Chicago ‘18, B.A. Art
-                  History). Having interned at a small (now-medium) retail
-                  luxury streetwear and designer clothing store called Notre I
-                  knew that I was interested in start ups and business but
-                  wasn’t sure if working in the fashion industry would be
-                  correct for me.
+                  History). After interning at a small retail luxury streetwear
+                  and designer clothing store called{' '}
+                  <a href="https://www.notre-shop.com/" target="_blank">
+                    Notre
+                  </a>{' '}
+                  for about 3 years, I knew that I was interested in start ups
+                  and business but wasn’t sure if working in the fashion
+                  industry would be correct for me.
                 </p>
                 <p>
                   At the encouragement of some friends, I decided to give
                   programming a try. After finishing CodeCademy’s basic Web
                   Development track and deciding that I “didn’t hate
-                  programming” I decided that I might like to try to further
-                  grow as a programmer and even make a living as one. Shortly
-                  after, I applied to a coding bootcamp called Fullstack Academy
-                  and completed the program in April 2019. Since completing the
-                  program, I have found that not only do I “not hate”
-                  programming but in fact enjoy it quite a bit because there are
-                  many ways of doing the same thing.
+                  programming” I applied to a coding bootcamp called Fullstack
+                  Academy. After completing the bootcamp in April 2019 program,
+                  I have found that not only do I “not hate” programming but in
+                  fact enjoy it quite a bit.
                 </p>
                 <p>
-                  While programming is no longer a aprt of my daily routine
+                  While programming is no longer a part of my daily routine
                   while I work at my family's business, I am still working on
                   small side projects that (I hope) can solve some inefficiency
-                  and to help me grow as a programmer. Outside of my own time
-                  programming and startups, I enjoy practicing film photography
-                  with my Nikon F3, keeping up with the latest in fashion,
-                  trying to learn the math required for basic Machine Learning.
+                  and to help me grow as a programmer. Outside of programming
+                  and startups, I enjoy practicing film photography with my
+                  Nikon F3, keeping up with the latest in fashion, and trying to
+                  learn the math required for basic Machine Learning.
                 </p>
               </Card.Body>
             </Card>
