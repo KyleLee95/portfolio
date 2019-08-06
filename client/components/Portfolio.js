@@ -64,6 +64,10 @@ class Portfolio extends Component {
                 |{' '}
                 <Link style={{color: 'black'}} to="/thoughts">
                   thoughts
+                </Link>{' '}
+                |{' '}
+                <Link style={{color: 'black'}} to="/info">
+                  info
                 </Link>
               </h4>
             </Col>

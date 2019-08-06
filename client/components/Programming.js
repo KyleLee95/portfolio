@@ -54,6 +54,8 @@ class Programming extends Component {
             fontFamily: 'serif'
           }}
         >
+          <br />
+          <h1>Programming</h1>
           <Row>
             <Col
               className="text-center"

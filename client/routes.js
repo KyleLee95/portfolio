@@ -9,7 +9,8 @@ import {
   ConnectedPortfolio,
   ConnectedProgramming,
   ConnectedContentManager,
-  About
+  About,
+  Mood
 } from './components'
 import {me} from './store'
 
@@ -32,7 +33,8 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/manager" component={ConnectedContentManager} />
         <Route path="/programming" component={ConnectedProgramming} />
-        <Route path="/about" component={About} />
+        <Route path="/info" component={About} />
+        <Route path="/mood" component={Mood} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
