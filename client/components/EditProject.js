@@ -4,13 +4,16 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import history from 'history'
+import ReactQuill from 'react-quill'
+
+let quill = ''
 class EditProject extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
       project: {}
     }
-
+    this.handleQuill = this.handleQuill.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -25,6 +28,10 @@ class EditProject extends Component {
     })
   }
 
+  handleQuill(value) {
+    quill = value
+  }
+
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
@@ -35,7 +42,7 @@ class EditProject extends Component {
     e.preventDefault()
     await axios.put(`/api/projects/edit/${this.props.match.params.id}`, {
       title: this.state.title,
-      description: this.state.description,
+      description: quill,
       gitHubLink: this.state.gitHubLink,
       deployLink: this.state.deployLink,
       image: this.state.image
@@ -67,7 +74,7 @@ class EditProject extends Component {
                     defaultValue={this.state.project.title}
                     placeholder="Title"
                   />
-                  <Form.Label>Description</Form.Label>
+                  {/* <Form.Label>Description</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows="3"
@@ -76,7 +83,7 @@ class EditProject extends Component {
                     onChange={this.handleChange}
                     defaultValue={this.state.project.description}
                     placeholder="Description"
-                  />
+                  /> */}
                   <Form.Label>GitHubLink</Form.Label>
                   <Form.Control
                     onChange={this.handleChange}
@@ -104,6 +111,12 @@ class EditProject extends Component {
               <Button type="submit">Submit</Button>
               {/* </Link> */}
             </Form>
+            <br />
+            <ReactQuill
+              name="description"
+              defaultValue={this.state.project.description}
+              onChange={this.handleQuill}
+            />
           </Col>
         </Row>
       )

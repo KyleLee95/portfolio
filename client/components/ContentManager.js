@@ -1,16 +1,22 @@
 import React, {Component} from 'react'
-import {Row, Col, Button, Form} from 'react-bootstrap'
+import {Row, Col, Button, Form, Tabs, Tab} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {PortfolioItem} from '.'
 import axios from 'axios'
+import ReactQuill from 'react-quill'
+
+let quill = ''
 class ContentManager extends Component {
   constructor(props, context) {
     super(props, context)
-    this.state = {}
+    this.state = {
+      description: ''
+    }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.delete = this.delete.bind(this)
+    this.handleQuill = this.handleQuill.bind(this)
   }
 
   async componentDidMount() {
@@ -28,9 +34,10 @@ class ContentManager extends Component {
 
   async handleSubmit(e) {
     e.preventDefault()
+
     await axios.post('/api/projects', {
       title: this.state.title,
-      description: this.state.description,
+      description: quill,
       gitHubLink: this.state.gitHubLink,
       deployLink: this.state.deployLink,
       image: this.state.image
@@ -42,6 +49,10 @@ class ContentManager extends Component {
     })
   }
 
+  handleQuill(value) {
+    quill = value
+  }
+
   async delete(project) {
     const projects = await axios.delete(`/api/projects/${project.id}`)
     this.setState({
@@ -51,31 +62,33 @@ class ContentManager extends Component {
 
   render() {
     if (this.state.projects === undefined) {
-      return 'asdfniaosdfnioasdnfio'
+      return null
     } else {
       return (
         <div className="container-fluid">
-          {/* Displays the Form to create a new project */}
-          <Row>
-            <Col
-              className="text-center"
-              style={{padding: 10}}
-              xs={12}
-              lg={{offset: 3, span: 6}}
-            >
-              {/* New Project Form */}
-              <Form onSubmit={this.handleSubmit}>
-                <h1>New Project</h1>
+          <Tabs defaultActiveKey="project">
+            <Tab eventKey="project" title="project">
+              {/* Displays the Form to create a new project */}
+              <Row>
+                <Col
+                  className="text-center"
+                  style={{padding: 10}}
+                  xs={12}
+                  lg={{offset: 3, span: 6}}
+                >
+                  {/* New Project Form */}
+                  <Form onSubmit={this.handleSubmit}>
+                    <h1>New Project</h1>
 
-                <Form.Row>
-                  <Col>
-                    <Form.Label>Title</Form.Label>
-                    <Form.Control
-                      onChange={this.handleChange}
-                      name="title"
-                      placeholder="Title"
-                    />
-                    <Form.Label>Description</Form.Label>
+                    <Form.Row>
+                      <Col>
+                        <Form.Label>Title</Form.Label>
+                        <Form.Control
+                          onChange={this.handleChange}
+                          name="title"
+                          placeholder="Title"
+                        />
+                        {/* <Form.Label>Description</Form.Label>
                     <Form.Control
                       as="textarea"
                       rows="3"
@@ -83,57 +96,74 @@ class ContentManager extends Component {
                       name="description"
                       onChange={this.handleChange}
                       placeholder="Description"
-                    />
-                    <Form.Label>GitHubLink</Form.Label>
-                    <Form.Control
-                      onChange={this.handleChange}
-                      name="gitHubLink"
-                      placeholder="GitHubLink"
-                    />
-                    <Form.Label>DeployLink</Form.Label>
-                    <Form.Control
-                      onChange={this.handleChange}
-                      name="deployLink"
-                      placeholder="DeployLink"
-                    />
-                    <Form.Label>Image File name</Form.Label>
-                    <Form.Control
-                      onChange={this.handleChange}
-                      name="image"
-                      placeholder="image"
-                    />
-                  </Col>
-                </Form.Row>
-                <Button type="submit">Submit</Button>
-              </Form>
-            </Col>
-          </Row>
-          {/* Displays the projects */}
-          <Row>
-            <Col
-              className="text-center"
-              style={{padding: 10}}
-              xs={12}
-              lg={{offset: 3, span: 6}}
-            >
-              {this.state.projects
-                .sort((a, b) => {
-                  return b.id - a.id
-                })
-                .map(project => {
-                  return (
-                    <React.Fragment key={project.id}>
-                      <br />
-                      <PortfolioItem
-                        user={this.props.user}
-                        deleteProject={this.delete}
-                        project={project}
-                      />
-                    </React.Fragment>
-                  )
-                })}
-            </Col>
-          </Row>
+                    /> */}
+
+                        <Form.Label>GitHubLink</Form.Label>
+                        <Form.Control
+                          onChange={this.handleChange}
+                          name="gitHubLink"
+                          placeholder="GitHubLink"
+                        />
+                        <Form.Label>DeployLink</Form.Label>
+                        <Form.Control
+                          onChange={this.handleChange}
+                          name="deployLink"
+                          placeholder="DeployLink"
+                        />
+                        <Form.Label>Image File name</Form.Label>
+                        <Form.Control
+                          onChange={this.handleChange}
+                          name="image"
+                          placeholder="image"
+                        />
+                      </Col>
+                    </Form.Row>
+                    <Button type="submit">Submit</Button>
+                  </Form>
+                  <br />
+                  Description
+                  <ReactQuill
+                    name="description"
+                    // defaultValue={this.state.description}
+                    onChange={this.handleQuill}
+                  />
+                </Col>
+              </Row>
+
+              {/* Displays the projects */}
+              <Row>
+                <Col
+                  className="text-center"
+                  style={{padding: 10}}
+                  xs={12}
+                  lg={{offset: 3, span: 6}}
+                >
+                  {this.state.projects
+                    .sort((a, b) => {
+                      return b.id - a.id
+                    })
+                    .map(project => {
+                      return (
+                        <React.Fragment key={project.id}>
+                          <br />
+                          <PortfolioItem
+                            user={this.props.user}
+                            deleteProject={this.delete}
+                            project={project}
+                          />
+                        </React.Fragment>
+                      )
+                    })}
+                </Col>
+              </Row>
+            </Tab>
+            <Tab eventKey="thoughts" title="thoughts">
+              asdfmaisdfnoiasdnfiaosfns
+            </Tab>
+            <Tab eventKey="mood" title="mood">
+              A
+            </Tab>
+          </Tabs>
         </div>
       )
     }

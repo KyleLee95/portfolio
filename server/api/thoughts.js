@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Thought} = require('../db/models')
+
 module.exports = router
 
 router.get('/:id', async (req, res, next) => {

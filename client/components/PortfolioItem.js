@@ -3,14 +3,19 @@ import {Row, Col, Button, Card} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import history from 'history'
+
 export const PortfolioItem = props => {
   const {project, user, deleteProject} = props
+
+  // Start reading the blob as text.
   return (
     <Card style={{boxShadow: '2px 2px 2px grey'}}>
       <Card.Img variant="top" src={project.image} alt="carouselImage" />
       <Card.Body>
         <Card.Title>{project.title}</Card.Title>
-        <Card.Text>{project.description}</Card.Text>
+        {/* <Card.Text>{project.description}</Card.Text>
+       */}
+        <Card.Title dangerouslySetInnerHTML={{__html: project.description}} />
         <Row style={{justifyContent: 'space-evenly'}}>
           <a href={project.gitHubLink} target="_blank">
             <Button variant="dark">GitHub Repo</Button>

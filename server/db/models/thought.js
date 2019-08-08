@@ -3,7 +3,7 @@ const db = require('../db')
 
 const Thought = db.define('thoughts', {
   title: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     unique: true,
     allowNull: false
   },
