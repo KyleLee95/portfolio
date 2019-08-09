@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import axios from 'axios'
 import history from 'history'
 import ReactQuill from 'react-quill'
+import {ProjectForm} from '.'
 
 let quill = ''
 class EditProject extends Component {
@@ -20,7 +21,7 @@ class EditProject extends Component {
 
   async componentDidMount() {
     const project = await axios.get(
-      `/api/projects/${Number(this.props.match.params.id)}`
+      `/api/projects/${this.props.match.params.id}`
     )
 
     this.setState({
@@ -30,6 +31,7 @@ class EditProject extends Component {
 
   handleQuill(value) {
     quill = value
+    console.log(quill)
   }
 
   handleChange(e) {
@@ -51,76 +53,25 @@ class EditProject extends Component {
   }
 
   render() {
-    if (this.state.project.id === undefined) {
-      return <Spinner />
-    } else {
-      return (
-        <Row>
-          <Col
-            className="text-center"
-            style={{padding: 10}}
-            xs={12}
-            lg={{offset: 3, span: 6}}
-          >
-            {/* New Project Form */}
-            <Form onSubmit={this.handleSubmit}>
-              <h1>Edit Project</h1>
-              <Form.Row>
-                <Col>
-                  <Form.Label>Title</Form.Label>
-                  <Form.Control
-                    onChange={this.handleChange}
-                    name="title"
-                    defaultValue={this.state.project.title}
-                    placeholder="Title"
-                  />
-                  {/* <Form.Label>Description</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows="3"
-                    type="password"
-                    name="description"
-                    onChange={this.handleChange}
-                    defaultValue={this.state.project.description}
-                    placeholder="Description"
-                  /> */}
-                  <Form.Label>GitHubLink</Form.Label>
-                  <Form.Control
-                    onChange={this.handleChange}
-                    name="gitHubLink"
-                    defaultValue={this.state.project.gitHubLink}
-                    placeholder="GitHubLink"
-                  />
-                  <Form.Label>DeployLink</Form.Label>
-                  <Form.Control
-                    onChange={this.handleChange}
-                    name="deployLink"
-                    defaultValue={this.state.project.deployLink}
-                    placeholder="DeployLink"
-                  />
-                  <Form.Label>Image File name</Form.Label>
-                  <Form.Control
-                    onChange={this.handleChange}
-                    name="image"
-                    defaultValue={this.state.project.image}
-                    placeholder="image"
-                  />
-                </Col>
-              </Form.Row>
-              {/* <Link to="/manager"> */}
-              <Button type="submit">Submit</Button>
-              {/* </Link> */}
-            </Form>
-            <br />
-            <ReactQuill
-              name="description"
-              defaultValue={this.state.project.description}
-              onChange={this.handleQuill}
-            />
-          </Col>
-        </Row>
-      )
-    }
+    if (this.state.project.id === undefined) return null
+    return (
+      <Row>
+        <Col
+          className="text-center"
+          style={{padding: 10}}
+          xs={12}
+          lg={{offset: 3, span: 6}}
+        >
+          {/* New Project Form */}
+          <ProjectForm
+            handleChange={this.handleChange}
+            handleQuill={this.handleQuill}
+            handleSubmit={this.handleSubmit}
+            project={this.state.project}
+          />
+        </Col>
+      </Row>
+    )
   }
 }
 

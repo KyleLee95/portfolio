@@ -2,16 +2,16 @@ import React, {Component} from 'react'
 import {Row, Col, Button, Form, Tabs, Tab} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {PortfolioItem} from '.'
+import {PortfolioItem, ProjectForm} from '.'
 import axios from 'axios'
 import ReactQuill from 'react-quill'
 
-let quill = ''
 class ContentManager extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      description: ''
+      quill: '',
+      project: {}
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -37,20 +37,28 @@ class ContentManager extends Component {
 
     await axios.post('/api/projects', {
       title: this.state.title,
-      description: quill,
+      description: this.state.quill,
       gitHubLink: this.state.gitHubLink,
       deployLink: this.state.deployLink,
       image: this.state.image
     })
     const projects = await axios.get('/api/projects')
-
+    this.setState({
+      title: '',
+      description: '',
+      gitHubLink: '',
+      deployLink: '',
+      image: ''
+    })
     this.setState({
       projects: projects.data
     })
   }
 
   handleQuill(value) {
-    quill = value
+    this.setState({
+      quill: value
+    })
   }
 
   async delete(project) {
@@ -76,56 +84,12 @@ class ContentManager extends Component {
                   xs={12}
                   lg={{offset: 3, span: 6}}
                 >
-                  {/* New Project Form */}
-                  <Form onSubmit={this.handleSubmit}>
-                    <h1>New Project</h1>
-
-                    <Form.Row>
-                      <Col>
-                        <Form.Label>Title</Form.Label>
-                        <Form.Control
-                          onChange={this.handleChange}
-                          name="title"
-                          placeholder="Title"
-                        />
-                        {/* <Form.Label>Description</Form.Label>
-                    <Form.Control
-                      as="textarea"
-                      rows="3"
-                      type="password"
-                      name="description"
-                      onChange={this.handleChange}
-                      placeholder="Description"
-                    /> */}
-
-                        <Form.Label>GitHubLink</Form.Label>
-                        <Form.Control
-                          onChange={this.handleChange}
-                          name="gitHubLink"
-                          placeholder="GitHubLink"
-                        />
-                        <Form.Label>DeployLink</Form.Label>
-                        <Form.Control
-                          onChange={this.handleChange}
-                          name="deployLink"
-                          placeholder="DeployLink"
-                        />
-                        <Form.Label>Image File name</Form.Label>
-                        <Form.Control
-                          onChange={this.handleChange}
-                          name="image"
-                          placeholder="image"
-                        />
-                      </Col>
-                    </Form.Row>
-                    <Button type="submit">Submit</Button>
-                  </Form>
-                  <br />
-                  Description
-                  <ReactQuill
-                    name="description"
-                    // defaultValue={this.state.description}
-                    onChange={this.handleQuill}
+                  <h1>Project Form</h1>
+                  <ProjectForm
+                    project={this.state.project}
+                    handleChange={this.handleChange}
+                    handleSubmit={this.handleSubmit}
+                    handleQuill={this.handleQuill}
                   />
                 </Col>
               </Row>
