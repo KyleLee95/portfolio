@@ -18,10 +18,32 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
+          <Row style={{justifyContent: 'space-evenly'}}>
+            {/* <Col xs={2}> */}
+            <Link style={{color: 'white'}} to="/home">
+              <Button variant="outline-light">home</Button>
+            </Link>
+            <Link style={{color: 'white'}} to="/mood">
+              <Button variant="outline-light">mood</Button>
+            </Link>
+
+            {/* The navbar will show these links before you log in */}
+
+            <Link style={{color: 'white'}} to="/programming">
+              <Button variant="outline-light">programming</Button>
+            </Link>
+
+            <Link to="/thoughts" style={{color: 'white'}}>
+              <Button variant="outline-light">thoughts</Button>
+            </Link>
+            <Link style={{color: 'white'}} to="/info">
+              <Button variant="outline-light">info</Button>
+            </Link>
+
+            <a href="#" onClick={handleClick}>
+              <Button variant="outline-light"> logout</Button>
+            </a>
+          </Row>
         </div>
       ) : (
         <div>

@@ -20,7 +20,7 @@ class Thoughts extends Component {
   }
 
   render() {
-    // if (this.state.thoughts[0] === undefined) return null
+    if (this.state.thoughts[0] === undefined) return null
     return (
       <div
         className="container-fluid"

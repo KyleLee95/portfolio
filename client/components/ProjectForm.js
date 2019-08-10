@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {Col, Button, Form} from 'react-bootstrap'
-
 import ReactQuill from 'react-quill'
 
 export class ProjectForm extends Component {
@@ -15,7 +14,7 @@ export class ProjectForm extends Component {
   render() {
     return (
       <React.Fragment>
-        {/* New Project Form
+        {/* Project Form
 
         receives handleChange, handleSubmit, and handleQuill from the container component.
         Works for edit form.
@@ -28,7 +27,7 @@ export class ProjectForm extends Component {
           defaultValue={this.props.project.description}
           onChange={this.props.handleQuill}
         />
-        <Form onSubmit={this.props.handleSubmit}>
+        <Form style={{fontFamily: 'serif'}} onSubmit={this.props.handleSubmit}>
           <Form.Row>
             <Col>
               <Form.Label>Title</Form.Label>
@@ -62,7 +61,9 @@ export class ProjectForm extends Component {
             </Col>
           </Form.Row>
           {/* <Link to="/manager"> */}
-          <Button type="submit">Submit</Button>
+          <Button variant="dark" type="submit">
+            Submit
+          </Button>
           {/* </Link> */}
         </Form>
       </React.Fragment>

@@ -6,6 +6,7 @@ import {
   Login,
   Signup,
   ConnectedEditProject,
+  EditThought,
   ConnectedPortfolio,
   ConnectedProgramming,
   ConnectedContentManager,
@@ -48,6 +49,7 @@ class Routes extends Component {
               path="/edit/project/:id"
               component={ConnectedEditProject}
             />
+            <Route exact path="/edit/thought/:id" component={EditThought} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

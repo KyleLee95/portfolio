@@ -18,7 +18,10 @@ export class Mood extends Component {
   render() {
     // if (this.state.content[0] === undefined) return null
     return (
-      <div className="container-fluid" style={{fontFamily: 'serif'}}>
+      <div
+        className="container-fluid"
+        style={{fontFamily: 'serif', backgroundColor: '#F9F9F9'}}
+      >
         <br />
         <Row>
           <Col
@@ -26,9 +29,12 @@ export class Mood extends Component {
             sm={12}
             md={12}
             lg={{offset: 3, span: 6}}
-            style={{textAlign: 'center', alignContent: 'center'}}
+            style={{
+              textAlign: 'center',
+              alignContent: 'center'
+            }}
           >
-            A
+            <h1>Mood</h1>
             {this.state.content.map(content => {
               return <Image key={content.id} src={`${content.url}`} />
             })}

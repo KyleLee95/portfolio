@@ -1,10 +1,7 @@
 import React, {Component} from 'react'
-import {Row, Col, Button, Form, Spinner} from 'react-bootstrap'
+import {Row, Col} from 'react-bootstrap'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
 import axios from 'axios'
-import history from 'history'
-import ReactQuill from 'react-quill'
 import {ProjectForm} from '.'
 
 let quill = ''
@@ -31,7 +28,6 @@ class EditProject extends Component {
 
   handleQuill(value) {
     quill = value
-    console.log(quill)
   }
 
   handleChange(e) {
@@ -62,7 +58,7 @@ class EditProject extends Component {
           xs={12}
           lg={{offset: 3, span: 6}}
         >
-          {/* New Project Form */}
+          {/* Project Form */}
           <ProjectForm
             handleChange={this.handleChange}
             handleQuill={this.handleQuill}

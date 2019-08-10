@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import {Row, Col} from 'react-bootstrap'
-import ReactQuill from 'react-quill'
+
 /**
  * COMPONENT
  */
@@ -21,27 +20,21 @@ export class SingleThought extends Component {
   }
   render() {
     const {thought} = this.state
-    if (this.state.thought.id === undefined) return null
+    if (thought.id === undefined) return null
     return (
-      <div className="container-fluid">
+      <div className="container-fluid" style={{fontFamily: 'serif'}}>
         <div style={{textAlign: 'center'}}>
           <br />
           <h1>{thought.title}</h1>
           <div
             style={{
               display: 'inline-block',
-              paddingLeft: '20%',
-              paddingRight: '20%',
+
+              maxWidth: '70ch',
               textAlign: 'left'
             }}
-          >
-            {/* <Row>
-              <Col xs={5}> */}
-
-            {thought.content}
-            {/* </Col>
-            </Row> */}
-          </div>
+            dangerouslySetInnerHTML={{__html: thought.content}}
+          />
         </div>
       </div>
     )
