@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Spinner, Row, Col} from 'react-bootstrap'
+import {Spinner, Row, Col, Image as BsImage} from 'react-bootstrap'
 import axios from 'axios'
 export class Mood extends Component {
   constructor(props) {
@@ -62,8 +62,16 @@ export class Mood extends Component {
               {this.state.moods.map(content => {
                 var image = new Image()
                 image.src = content.image
-                document.body.appendChild(image)
-                // return <Image key={content.id} src={`${content.url}`} />
+                console.log(image.src)
+                // document.body.appendChild(image)
+
+                return (
+                  <React.Fragment key={content.id}>
+                    <BsImage fluid src={`${image.src}`} />
+                    <br />
+                    <br />
+                  </React.Fragment>
+                )
               })}
             </Col>
           </Row>
