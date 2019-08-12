@@ -12,6 +12,7 @@ export class ProjectForm extends Component {
   }
 
   render() {
+    if (this.props.project === undefined) return null
     return (
       <React.Fragment>
         {/* Project Form

@@ -20,7 +20,7 @@ class Programming extends Component {
   }
 
   render() {
-    if (this.state.projects === undefined) {
+    if (this.state.projects[0] === undefined) {
       return (
         <div
           className="container-fluid"

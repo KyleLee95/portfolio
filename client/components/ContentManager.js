@@ -2,7 +2,11 @@ import React, {Component} from 'react'
 import {Row, Col, Button, Form, Tabs, Tab} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {ContentManagerProjectContainer, ContentManagerThoughtContainer} from '.'
+import {
+  ContentManagerProjectContainer,
+  ContentManagerThoughtContainer,
+  ContentManagerMoodContainer
+} from '.'
 import axios from 'axios'
 
 class ContentManager extends Component {
@@ -18,7 +22,7 @@ class ContentManager extends Component {
             <ContentManagerThoughtContainer />
           </Tab>
           <Tab eventKey="mood" title="mood">
-            A
+            <ContentManagerMoodContainer />
           </Tab>
         </Tabs>
       </div>

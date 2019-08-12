@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {Row, Col} from 'react-bootstrap'
+import {Row, Col, Spinner} from 'react-bootstrap'
 
 class Thoughts extends Component {
   constructor(props) {
@@ -20,42 +20,67 @@ class Thoughts extends Component {
   }
 
   render() {
-    if (this.state.thoughts[0] === undefined) return null
-    return (
-      <div
-        className="container-fluid"
-        style={{
-          textAlign: 'center',
-          fontFamily: 'serif',
-          backgroundColor: '#F9F9F9',
-          height: '100vh'
-        }}
-      >
-        <div style={{display: 'inline-block'}}>
-          <br />
-          <h1>Thoughts</h1>
-          <br />
+    if (this.state.thoughts[0] === undefined) {
+      return (
+        <div
+          className="container-fluid"
+          style={{
+            backgroundColor: '#F9F9F9',
+            textAlign: 'center',
+            fontFamily: 'serif',
+            height: '100%'
+          }}
+        >
           <Row>
-            <Col xs={12}>
-              <ul>
-                {this.state.thoughts.map(thought => {
-                  return (
-                    <React.Fragment key={thought.id}>
-                      <br />
-                      <li>
-                        <Link to={`/thought/${thought.id}`}>
-                          {thought.title}
-                        </Link>
-                      </li>
-                    </React.Fragment>
-                  )
-                })}
-              </ul>
+            <br />
+            <Col
+              className="text-center"
+              style={{padding: 10}}
+              xs={12}
+              lg={{offset: 3, span: 6}}
+            >
+              <Spinner animation="grow" />
             </Col>
           </Row>
         </div>
-      </div>
-    )
+      )
+    } else {
+      return (
+        <div
+          className="container-fluid"
+          style={{
+            textAlign: 'center',
+            fontFamily: 'serif',
+            backgroundColor: '#F9F9F9',
+            height: '100vh'
+          }}
+        >
+          <div style={{display: 'inline-block'}}>
+            <br />
+            <h1>Thoughts</h1>
+            <br />
+            <Row>
+              <Col xs={12}>
+                <ul>
+                  {this.state.thoughts.map(thought => {
+                    return (
+                      <React.Fragment key={thought.id}>
+                        <br />
+                        <li>
+                          <Link to={`/thought/${thought.id}`}>
+                            {thought.title}
+                          </Link>
+                        </li>
+                      </React.Fragment>
+                    )
+                  })}
+                </ul>
+              </Col>
+            </Row>
+          </div>
+        </div>
+      )
+    }
   }
 }
 

@@ -57,7 +57,20 @@ export class ContentManagerThoughtContainer extends Component {
   }
 
   render() {
-    if (this.state.thoughts[0] === undefined) return null
+    if (this.state.thoughts[0] === undefined)
+      return (
+        <Row>
+          <Col style={{padding: 10}} xs={12} lg={{offset: 3, span: 6}}>
+            <h1>Thought Form</h1>
+            <ThoughtForm
+              thought={this.state.thought}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+              handleQuill={this.handleQuill}
+            />
+          </Col>
+        </Row>
+      )
     return (
       <div
         className="container-fluid"

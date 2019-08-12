@@ -61,7 +61,24 @@ export class ContentManagerProjectContainer extends Component {
 
   render() {
     if (this.state.projects[0] === undefined) {
-      return null
+      return (
+        <Row>
+          <Col
+            className="text-center"
+            style={{padding: 10}}
+            xs={12}
+            lg={{offset: 3, span: 6}}
+          >
+            <h1>Project Form</h1>
+            <ProjectForm
+              project={this.state.project}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+              handleQuill={this.handleQuill}
+            />
+          </Col>
+        </Row>
+      )
     }
     return (
       <div className="container-fluid" style={{fontFamily: 'serif'}}>

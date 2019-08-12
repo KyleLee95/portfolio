@@ -1,11 +1,11 @@
 const router = require('express').Router()
-const {Project} = require('../db/models')
+const {Mood} = require('../db/models')
 module.exports = router
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const project = await Project.findByPk(req.params.id)
-    res.json(project).status(200)
+    const mood = await Mood.findByPk(req.params.id)
+    res.json(mood).status(200)
   } catch (err) {
     next(err)
   }
@@ -13,8 +13,8 @@ router.get('/:id', async (req, res, next) => {
 
 router.get('/', async (req, res, next) => {
   try {
-    const projects = await Project.findAll()
-    res.json(projects)
+    const moods = await Mood.findAll()
+    res.json(moods)
   } catch (err) {
     next(err)
   }
@@ -22,10 +22,10 @@ router.get('/', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
   try {
-    const project = await Project.findByPk(req.params.id)
-    await project.destroy()
-    const projects = await Project.findAll()
-    res.status(200).send(projects)
+    const mood = await Mood.findByPk(req.params.id)
+    await mood.destroy()
+    const moods = await Mood.findAll()
+    res.status(200).send(moods)
   } catch (err) {
     next(err)
   }
@@ -33,16 +33,15 @@ router.delete('/:id', async (req, res, next) => {
 
 router.put('/edit/:id', async (req, res, next) => {
   try {
-    const project = await Project.findByPk(req.params.id)
-    await project.update({
+    const mood = await Mood.findByPk(req.params.id)
+    await mood.update({
       title: req.body.title,
-      description: req.body.description,
-      gitHubLink: req.body.gitHubLink,
-      deployLink: req.body.deployLink,
+      type: req.body.type,
+      url: req.body.url,
       image: req.body.image
     })
-    const projects = await Project.findAll()
-    res.status(200).send(projects)
+    const moods = await Mood.findAll()
+    res.status(200).send(moods)
   } catch (err) {
     next(err)
   }
@@ -50,15 +49,14 @@ router.put('/edit/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    await Project.create({
+    await Mood.create({
       title: req.body.title,
-      description: req.body.description,
-      gitHubLink: req.body.gitHubLink,
-      deployLink: req.body.deployLink,
+      type: req.body.type,
+      url: req.body.url,
       image: req.body.image
     })
-    const projects = Project.findAll()
-    res.json(projects)
+    const moods = Mood.findAll()
+    res.json(moods)
   } catch (err) {
     next(err)
   }

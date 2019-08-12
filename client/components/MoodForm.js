@@ -2,44 +2,58 @@ import React, {Component} from 'react'
 import {Form, Button, Row, Col} from 'react-bootstrap'
 import ReactQuill from 'react-quill'
 
-export class ThoughtForm extends Component {
+export class MoodForm extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      thought: {},
+      mood: {},
       quill: ''
     }
   }
 
   render() {
-    if (this.props.thought === undefined) return null
+    if (this.props.mood === undefined) return null
     return (
       <React.Fragment>
-        {/* Thought Form
+        {/* Mood Form
 
         receives handleChange, handleSubmit, and handleQuill from the container component.
         Works for edit form.
 
         */}
         <br />
-        Content
-        <ReactQuill
-          name="quill"
-          defaultValue={this.props.thought.content}
-          onChange={this.props.handleQuill}
-        />
+
         <Form
           style={{padding: 10, fontFamily: 'serif'}}
           onSubmit={this.props.handleSubmit}
         >
           <Form.Row>
             <Col>
-              <Form.Label>Title</Form.Label>
+              <Form.Label>url</Form.Label>
               <Form.Control
                 onChange={this.props.handleChange}
-                name="title"
-                defaultValue={this.props.thought.title}
-                placeholder="Title"
+                name="url"
+                defaultValue={this.props.mood.url}
+                placeholder="url"
+              />
+              <Form.Label>type</Form.Label>
+              <Form.Control
+                as="select"
+                onChange={this.props.handleChange}
+                name="type"
+                defaultValue={this.props.mood.type}
+              >
+                <option>SELECT</option>
+                <option>TEXT</option>
+                <option>VIDEO</option>
+                <option>IMAGE</option>
+              </Form.Control>
+              <br />
+              <Form.Control
+                id="file"
+                type="file"
+                name="image"
+                onChange={this.props.handleImage}
               />
             </Col>
           </Form.Row>
