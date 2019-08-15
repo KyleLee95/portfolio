@@ -57,7 +57,7 @@ class Thoughts extends Component {
         >
           <div style={{display: 'inline-block'}}>
             <br />
-            <h1>Thoughts</h1>
+            <h1>thoughts</h1>
             <br />
             <Row>
               <Col xs={12}>

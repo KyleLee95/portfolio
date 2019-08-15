@@ -101,7 +101,7 @@ export class Mood extends Component {
                 alignContent: 'center'
               }}
             >
-              <h1>Mood</h1>
+              <h1>mood</h1>
               {this.state.moods.map(content => {
                 // Pass the conttent to moodItem and let it handle the rendering logic
                 // Mood Item renders based on the type property

@@ -51,7 +51,7 @@ class Portfolio extends Component {
 
           <Row id="landing" style={{height: '100vh', display: 'inline-block'}}>
             <Col style={{textAlign: 'center', paddingTop: '35%'}}>
-              <h1>Kyle Lee</h1>
+              <h1>kyle lee</h1>
               <h4>
                 {' '}
                 <Link style={{color: 'black'}} to="/mood">

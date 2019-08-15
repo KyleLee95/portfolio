@@ -55,7 +55,7 @@ class Programming extends Component {
           }}
         >
           <br />
-          <h1>Programming</h1>
+          <h1>programming</h1>
           <Row>
             <Col
               className="text-center"

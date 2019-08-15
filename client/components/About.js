@@ -16,7 +16,7 @@ export class About extends Component {
         <Row style={{justifyContent: 'center', textAlign: 'center'}}>
           <Col xs={12} sm={12} md={12}>
             <br />
-            <h1>Info</h1>
+            <h1>info</h1>
             <br />
             <Card style={{marginLeft: '25%', width: '50%'}}>
               <Card.Img variant="top" src="profile-1.jpg" />
