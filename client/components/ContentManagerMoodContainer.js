@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Row, Col, Image} from 'react-bootstrap'
-import {MoodForm} from '.'
+import {MoodForm, MoodItem} from '.'
 import axios from 'axios'
 
 export class ContentManagerMoodContainer extends Component {
@@ -20,7 +20,7 @@ export class ContentManagerMoodContainer extends Component {
   async componentDidMount() {
     const moods = await axios.get('/api/moods/offSet/0')
     this.setState({
-      moods: moods.data.rows
+      moods: moods.data
     })
   }
 
@@ -60,7 +60,7 @@ export class ContentManagerMoodContainer extends Component {
 
     const moods = await axios.get('/api/moods/offSet/0')
     this.setState({
-      moods: moods.data.rows
+      moods: moods.data
     })
   }
 
@@ -119,39 +119,13 @@ export class ContentManagerMoodContainer extends Component {
             xs={12}
             lg={{offset: 3, span: 6}}
           >
-            {this.state.moods
+            {/* {this.state.moods
               .sort((a, b) => {
                 return b.id - a.id
               })
               .map(mood => {
-                if (mood.type === 'IMAGE') {
-                  var arrayBufferView = new Uint8Array(mood.image)
-                  var blob = new Blob([arrayBufferView], {type: 'image/png'})
-                  var urlCreator = window.URL || window.webkitURL
-                  var imageUrl = urlCreator.createObjectURL(blob)
-
-                  // console.log(img)
-                  return (
-                    <React.Fragment key={mood.id}>
-                      <br />
-                      image
-                      <Image src={`${imageUrl}`} />
-                    </React.Fragment>
-                  )
-                } else {
-                  return (
-                    <React.Fragment key={mood.id}>
-                      <br />
-                      video
-                      {/* <PortfolioItem
-                      user={this.props.user}
-                      deleteProject={this.delete}
-                      project={project}
-                    /> */}
-                    </React.Fragment>
-                  )
-                }
-              })}
+                return <MoodItem content={mood} key={mood.id} />
+              })} */}
           </Col>
         </Row>
       </div>
