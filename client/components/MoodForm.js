@@ -49,12 +49,7 @@ export class MoodForm extends Component {
                 <option>IMAGE</option>
               </Form.Control>
               <br />
-              <Form.Control
-                id="file"
-                type="file"
-                name="image"
-                onChange={this.props.handleImage}
-              />
+              <Form.Control id="file" type="file" name="image" />
             </Col>
           </Form.Row>
           {/* <Link to="/manager"> */}

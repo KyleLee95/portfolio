@@ -9,19 +9,18 @@ export class ContentManagerMoodContainer extends Component {
     this.state = {
       quill: '',
       moods: [],
-      mood: {},
-      b64Image: ''
+      mood: {}
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.handleImage = this.handleImage.bind(this)
+
     this.delete = this.delete.bind(this)
   }
 
   async componentDidMount() {
-    const moods = await axios.get('/api/moods/')
+    const moods = await axios.get('/api/moods/offSet/0')
     this.setState({
-      moods: moods.data
+      moods: moods.data.rows
     })
   }
 
@@ -31,47 +30,37 @@ export class ContentManagerMoodContainer extends Component {
     })
   }
 
-  handleImage() {
-    let b64Image = ''
-    var image = document.getElementById('file').files[0]
-    var reader = new FileReader()
-    reader.readAsDataURL(image)
-    console.log(reader.result)
-    reader.onload = function() {
-      console.log(reader.result)
-      b64Image = reader.result
-    }
-    reader.onerror = function(error) {
-      console.log('Error: ', error)
-    }
-    this.setState({
-      b64Image: b64Image
-    })
-    console.log(this.state)
-  }
-
   async handleSubmit(e) {
     e.preventDefault()
     var image = document.getElementById('file').files[0]
-    var reader = new FileReader()
-    reader.readAsDataURL(image)
-    const type = this.state.type
-    const url = this.state.url
-    // console.log(reader.result)
-    reader.onload = async function() {
-      await axios.post('/api/moods', {
-        type: type,
-        url: url,
-        image: reader.result
-      })
+    // Check to see if image is undefined. If it is, then skip base64 encoding
+    if (image !== undefined) {
+      var reader = new FileReader()
+      reader.readAsDataURL(image)
+      const type = this.state.type
+      const url = this.state.url
+      // console.log(reader.result)
+      reader.onload = async function() {
+        await axios.post('/api/moods', {
+          type: type,
+          url: url,
+          image: reader.result
+        })
+      }
+      reader.onerror = function(error) {
+        console.log('Error: ', error)
+      }
     }
-    reader.onerror = function(error) {
-      console.log('Error: ', error)
-    }
+    //for none images
+    await axios.post('/api/moods', {
+      type: this.state.type,
+      url: this.state.url,
+      image: null
+    })
 
-    const moods = await axios.get('/api/moods')
+    const moods = await axios.get('/api/moods/offSet/0')
     this.setState({
-      moods: moods.data
+      moods: moods.data.rows
     })
   }
 
@@ -118,7 +107,6 @@ export class ContentManagerMoodContainer extends Component {
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
               handleQuill={this.handleQuill}
-              handleImage={this.handleImage}
             />
           </Col>
         </Row>
