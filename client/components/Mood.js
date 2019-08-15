@@ -23,36 +23,38 @@ export class Mood extends Component {
       moods: sortedMoods,
       offSet: moods.data.length
     })
-
+    //Creates the event listener for scroll
     window.addEventListener('scroll', () => {
+      // uses the container where elements (scroller) are being added
+      // dividing by 4 was just a nice numnber that seems to work very well.
       const height = document.getElementById('scroller').clientHeight / 4
-
       if (Number(window.pageYOffset) >= Number(height)) {
+        //calls loadMore which, suprise, loads more content
         this.loadMore()
       }
     })
   }
-
+  //Used for infinite scrolling feed
   async loadMore() {
     let scrollMoods = await axios.get(`/api/moods/offSet/${this.state.offSet}`)
-    let iterableMoods = []
-    this.state.moods.forEach(mood => {
-      iterableMoods.push(mood)
-    })
-    let allMoods = [...scrollMoods.data, ...iterableMoods]
+
+    let allMoods = [...scrollMoods.data, ...this.state.moods]
+    //put all the moods in an array to and create an array from a set in order to double check
+    //that there are no duplicates.
     const uniqueMoods = Array.from(new Set(allMoods.map(a => a.id))).map(id => {
       return allMoods.find(a => a.id === id)
     })
+    //Sort them to put them in order
     let sorted = uniqueMoods.sort((a, b) => {
       return a.id - b.id
     })
+    //set the newOffSet so that the back-end query knows where to begin its ID Range
     let newOffSet = Number(this.state.offSet) + Number(scrollMoods.data.length)
 
     this.setState({
       moods: sorted,
       offSet: newOffSet
     })
-    console.log(this.state)
   }
 
   render() {
