@@ -4,7 +4,6 @@ import ReactPlayer from 'react-player'
 
 export const MoodItem = props => {
   const {content} = props
-
   //image
   if (content.type === 'IMAGE') {
     var image = new Image()
