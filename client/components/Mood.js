@@ -103,6 +103,8 @@ export class Mood extends Component {
             >
               <h1>Mood</h1>
               {this.state.moods.map(content => {
+                // Pass the conttent to moodItem and let it handle the rendering logic
+                // Mood Item renders based on the type property
                 return <MoodItem key={content.id} content={content} />
               })}
             </Col>

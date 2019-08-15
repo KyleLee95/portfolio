@@ -7,6 +7,9 @@ module.exports = router
 
 router.get('/offSet/:offSet', async (req, res, next) => {
   try {
+    //Sequelize's offSet featuer wasn't working so this is my own ghetto offSet
+    //First offSet of moods is 0 so you get from 0-10
+    //Second offSet of moods is 10, so you get 10-20
     const upperEnd = Number(req.params.offSet) + 10
     const moods = await Mood.findAll({
       where: {
