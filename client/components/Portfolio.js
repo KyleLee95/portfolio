@@ -22,7 +22,7 @@ class Portfolio extends Component {
   render() {
     if (this.state.projects === undefined) {
       return (
-        <div className="container-fluid">
+        <div className="container-fluid" style={{fontFamily: 'serif'}}>
           <Row>
             <br />
             <Col
@@ -31,6 +31,7 @@ class Portfolio extends Component {
               xs={12}
               lg={{offset: 3, span: 6}}
             >
+              <h1>A Monument To My Narcissim</h1>
               <Spinner animation="grow" />
             </Col>
           </Row>
