@@ -16,13 +16,16 @@ export class Mood extends Component {
 
   async componentDidMount() {
     const moods = await axios.get('/api/moods/offSet/0')
+    let sortedMoods = moods.data.sort((a, b) => {
+      return a.id - b.id
+    })
     this.setState({
-      moods: moods.data,
+      moods: sortedMoods,
       offSet: moods.data.length
     })
 
     window.addEventListener('scroll', () => {
-      const height = document.getElementById('scroller').clientHeight / 3
+      const height = document.getElementById('scroller').clientHeight / 4
 
       if (Number(window.pageYOffset) >= Number(height)) {
         this.loadMore()
@@ -37,17 +40,16 @@ export class Mood extends Component {
       iterableMoods.push(mood)
     })
     let allMoods = [...scrollMoods.data, ...iterableMoods]
-    const uniqueMoods = Array.from(new Set(allMoods.map(a => a.id)))
-      .map(id => {
-        return allMoods.find(a => a.id === id)
-      })
-      .sort((a, b) => {
-        return a.id - b.id
-      })
+    const uniqueMoods = Array.from(new Set(allMoods.map(a => a.id))).map(id => {
+      return allMoods.find(a => a.id === id)
+    })
+    let sorted = uniqueMoods.sort((a, b) => {
+      return a.id - b.id
+    })
     let newOffSet = Number(this.state.offSet) + Number(scrollMoods.data.length)
 
     this.setState({
-      moods: uniqueMoods,
+      moods: sorted,
       offSet: newOffSet
     })
     console.log(this.state)

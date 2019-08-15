@@ -7,7 +7,7 @@ module.exports = router
 
 router.get('/offSet/:offSet', async (req, res, next) => {
   try {
-    const upperEnd = Number(req.params.offSet) + 2
+    const upperEnd = Number(req.params.offSet) + 10
     console.log('upper end', upperEnd)
     const moods = await Mood.findAll({
       where: {
