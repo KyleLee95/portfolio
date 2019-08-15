@@ -8,13 +8,11 @@ module.exports = router
 router.get('/offSet/:offSet', async (req, res, next) => {
   try {
     const upperEnd = Number(req.params.offSet) + 10
-    console.log('upper end', upperEnd)
     const moods = await Mood.findAll({
       where: {
         id: {[Op.between]: [Number(req.params.offSet), Number(upperEnd)]}
       }
     })
-    // console.log(moods.data)
 
     res.json(moods).status(200)
   } catch (err) {
