@@ -66,6 +66,7 @@ class Thoughts extends Component {
                   return (
                     <React.Fragment key={thought.id}>
                       <br />
+                      <br />
                       <Link
                         style={{color: 'black'}}
                         to={`/thought/${thought.id}`}
