@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {Row, Col, Spinner} from 'react-bootstrap'
+import {Row, Col, Spinner, Button} from 'react-bootstrap'
 
 class Thoughts extends Component {
   constructor(props) {
@@ -61,20 +61,23 @@ class Thoughts extends Component {
             <br />
             <Row>
               <Col xs={12}>
-                <ul>
-                  {this.state.thoughts.map(thought => {
-                    return (
-                      <React.Fragment key={thought.id}>
-                        <br />
-                        <li>
-                          <Link to={`/thought/${thought.id}`}>
-                            {thought.title}
-                          </Link>
-                        </li>
-                      </React.Fragment>
-                    )
-                  })}
-                </ul>
+                {/* <ul style={{listStyle: 'none'}}> */}
+                {this.state.thoughts.map(thought => {
+                  return (
+                    <React.Fragment key={thought.id}>
+                      <br />
+                      <Link
+                        style={{color: 'black'}}
+                        to={`/thought/${thought.id}`}
+                      >
+                        <Button variant="outline-dark">
+                          <h3>{thought.title}</h3>
+                        </Button>
+                      </Link>
+                    </React.Fragment>
+                  )
+                })}
+                {/* </ul> */}
               </Col>
             </Row>
           </div>

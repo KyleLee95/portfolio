@@ -30,8 +30,8 @@ export class SingleThought extends Component {
             <div
               style={{
                 display: 'inline-block',
-                maxWidth: '70em',
-                textAlign: 'center'
+                maxWidth: '70ch',
+                textAlign: 'left'
               }}
               dangerouslySetInnerHTML={{__html: thought.content}}
             />
