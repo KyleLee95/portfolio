@@ -50,8 +50,9 @@ export class About extends Component {
                   small side projects that (I hope) can solve some inefficiency
                   and to help me grow as a programmer. Outside of programming
                   and startups, I enjoy practicing film photography with my
-                  Nikon F3, keeping up with the latest in fashion, and trying to
-                  learn the math required for basic Machine Learning.
+                  Nikon F3, keeping up with the latest in fashion, watching
+                  Formula 1, and trying to learn the math required for basic
+                  Machine Learning.
                 </p>
               </Card.Body>
             </Card>

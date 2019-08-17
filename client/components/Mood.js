@@ -69,8 +69,7 @@ export class Mood extends Component {
             height: '100%'
           }}
         >
-          <Row>
-            <br />
+          <Row style={{display: 'inline block'}}>
             <Col
               className="text-center"
               style={{padding: 10}}
