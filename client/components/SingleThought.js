@@ -26,15 +26,16 @@ export class SingleThought extends Component {
         <div style={{textAlign: 'center'}}>
           <br />
           <h1>{thought.title}</h1>
-          <div
-            style={{
-              display: 'inline-block',
-
-              maxWidth: '70ch',
-              textAlign: 'left'
-            }}
-            dangerouslySetInnerHTML={{__html: thought.content}}
-          />
+          <div>
+            <div
+              style={{
+                display: 'inline-block',
+                maxWidth: '70em',
+                textAlign: 'center'
+              }}
+              dangerouslySetInnerHTML={{__html: thought.content}}
+            />
+          </div>
         </div>
       </div>
     )

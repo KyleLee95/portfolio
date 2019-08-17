@@ -11,8 +11,7 @@ export const PortfolioItem = props => {
       <Card.Img variant="top" src={project.image} alt="carouselImage" />
       <Card.Body>
         <Card.Title>{project.title}</Card.Title>
-        {/* <Card.Text>{project.description}</Card.Text>
-       */}
+        {/*Due to the nature of how the HTML is set, if the description is null for even one instance it will break descriptions for everything*/}
         <Card.Title dangerouslySetInnerHTML={{__html: project.description}} />
         <Row style={{justifyContent: 'space-evenly'}}>
           <a href={project.gitHubLink} target="_blank">
