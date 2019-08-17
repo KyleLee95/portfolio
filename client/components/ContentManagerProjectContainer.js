@@ -38,7 +38,7 @@ export class ContentManagerProjectContainer extends Component {
       var reader = new FileReader()
       reader.readAsDataURL(image)
       const title = this.state.title
-      const description = this.state.description
+      const description = this.state.quill
       const gitHubLink = this.state.gitHubLink
       const deployLink = this.state.deployLink
       // console.log(reader.result)
@@ -54,6 +54,11 @@ export class ContentManagerProjectContainer extends Component {
       reader.onerror = function(error) {
         console.log('Error: ', error)
       }
+
+      const projects = await axios.get('/api/projects')
+      this.setState({
+        projects: projects.data
+      })
     } else {
       await axios.post('/api/projects', {
         title: this.state.title,
@@ -62,11 +67,11 @@ export class ContentManagerProjectContainer extends Component {
         deployLink: this.state.deployLink,
         image: null
       })
+      const projects = await axios.get('/api/projects')
+      this.setState({
+        projects: projects.data
+      })
     }
-    const projects = await axios.get('/api/projects')
-    this.setState({
-      projects: projects.data
-    })
   }
 
   handleQuill(value) {

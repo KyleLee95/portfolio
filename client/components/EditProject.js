@@ -47,7 +47,7 @@ class EditProject extends Component {
       var reader = new FileReader()
       reader.readAsDataURL(image)
       const title = this.state.title
-      const description = this.state.description
+      const description = this.state.quill
       const gitHubLink = this.state.gitHubLink
       const deployLink = this.state.deployLink
       const id = this.props.match.params.id
