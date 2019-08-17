@@ -32,13 +32,36 @@ export class ContentManagerProjectContainer extends Component {
 
   async handleSubmit(e) {
     e.preventDefault()
+    var image = document.getElementById('file').files[0]
+    // Check to see if image is undefined. If it is, then skip base64 encoding
+    if (image !== undefined) {
+      var reader = new FileReader()
+      reader.readAsDataURL(image)
+      const title = this.state.title
+      const description = this.state.description
+      const gitHubLink = this.state.gitHubLink
+      const deployLink = this.state.deployLink
+      // console.log(reader.result)
+      reader.onload = async function() {
+        await axios.post('/api/projects', {
+          title: title,
+          description: description,
+          gitHubLink: gitHubLink,
+          deployLink: deployLink,
+          image: reader.result
+        })
+      }
+      reader.onerror = function(error) {
+        console.log('Error: ', error)
+      }
+    }
 
     await axios.post('/api/projects', {
       title: this.state.title,
       description: this.state.quill,
       gitHubLink: this.state.gitHubLink,
       deployLink: this.state.deployLink,
-      image: this.state.image
+      image: null
     })
     const projects = await axios.get('/api/projects')
     this.setState({

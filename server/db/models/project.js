@@ -4,7 +4,7 @@ const db = require('../db')
 const Project = db.define('project', {
   title: {
     type: Sequelize.STRING,
-    unique: true,
+
     allowNull: false
   },
   description: {
@@ -19,7 +19,7 @@ const Project = db.define('project', {
     type: Sequelize.STRING
   },
   image: {
-    type: Sequelize.STRING
+    type: Sequelize.TEXT
   }
 })
 

@@ -53,12 +53,8 @@ export class ProjectForm extends Component {
                 placeholder="DeployLink"
               />
               <Form.Label>Image File name</Form.Label>
-              <Form.Control
-                onChange={this.props.handleChange}
-                name="image"
-                defaultValue={this.props.project.image}
-                placeholder="image"
-              />
+              <br />
+              <Form.Control id="file" type="file" name="image" />
             </Col>
           </Form.Row>
           {/* <Link to="/manager"> */}
