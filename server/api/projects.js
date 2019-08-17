@@ -33,6 +33,7 @@ router.delete('/:id', async (req, res, next) => {
 
 router.put('/edit/:id', async (req, res, next) => {
   try {
+    console.log(req.params.id)
     const project = await Project.findByPk(req.params.id)
     await project.update({
       title: req.body.title,

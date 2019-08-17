@@ -54,15 +54,15 @@ export class ContentManagerProjectContainer extends Component {
       reader.onerror = function(error) {
         console.log('Error: ', error)
       }
+    } else {
+      await axios.post('/api/projects', {
+        title: this.state.title,
+        description: this.state.quill,
+        gitHubLink: this.state.gitHubLink,
+        deployLink: this.state.deployLink,
+        image: null
+      })
     }
-
-    await axios.post('/api/projects', {
-      title: this.state.title,
-      description: this.state.quill,
-      gitHubLink: this.state.gitHubLink,
-      deployLink: this.state.deployLink,
-      image: null
-    })
     const projects = await axios.get('/api/projects')
     this.setState({
       projects: projects.data

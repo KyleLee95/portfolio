@@ -17,6 +17,7 @@ class EditProject extends Component {
   }
 
   async componentDidMount() {
+    console.log(this.props)
     const project = await axios.get(
       `/api/projects/${this.props.match.params.id}`
     )
@@ -27,7 +28,9 @@ class EditProject extends Component {
   }
 
   handleQuill(value) {
-    quill = value
+    this.setState({
+      quill: value
+    })
   }
 
   handleChange(e) {
@@ -38,13 +41,39 @@ class EditProject extends Component {
 
   async handleSubmit(e) {
     e.preventDefault()
-    await axios.put(`/api/projects/edit/${this.props.match.params.id}`, {
-      title: this.state.title,
-      description: quill,
-      gitHubLink: this.state.gitHubLink,
-      deployLink: this.state.deployLink,
-      image: this.state.image
-    })
+    var image = document.getElementById('file').files[0]
+    // Check to see if image is undefined. If it is, then skip base64 encoding
+    if (image !== undefined) {
+      var reader = new FileReader()
+      reader.readAsDataURL(image)
+      const title = this.state.title
+      const description = this.state.description
+      const gitHubLink = this.state.gitHubLink
+      const deployLink = this.state.deployLink
+      const id = this.props.match.params.id
+      // console.log(reader.result)
+      reader.onload = async function() {
+        await axios.put(`/api/projects/edit/${id}`, {
+          title: title,
+          description: description,
+          gitHubLink: gitHubLink,
+          deployLink: deployLink,
+          image: reader.result
+        })
+      }
+      reader.onerror = function(error) {
+        console.log('Error: ', error)
+      }
+    } else {
+      await axios.put(`/api/projects/edit/${this.props.match.params.id}`, {
+        title: this.state.title,
+        description: this.state.quill,
+        gitHubLink: this.state.gitHubLink,
+        deployLink: this.state.deployLink,
+        image: null
+      })
+    }
+
     this.props.history.push('/manager')
   }
 
