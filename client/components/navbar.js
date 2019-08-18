@@ -4,96 +4,120 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import {MobileNavBar} from '.'
 
 export class Navbar extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      isMobile: true
+    }
+    this.isMobileDevice = this.isMobileDevice.bind(this)
+  }
+
+  componentDidMount() {
+    this.isMobileDevice()
+  }
+
+  isMobileDevice() {
+    const isMobile =
+      typeof window.orientation !== 'undefined' ||
+      navigator.userAgent.indexOf('IEMobile') !== -1
+    this.setState({
+      isMobile: isMobile
+    })
   }
   render() {
-    if (this.props.isLoggedIn) {
-      return (
-        <div>
-          <Nav
-            style={{
-              backgroundColor: '#24292e',
-              justifyContent: 'center',
-              boxShadow: '1px 1px 1px grey',
-              fontFamily: 'serif'
-            }}
-          >
-            <div>
-              {/* The navbar will show these links after you log in */}
-              <Row style={{justifyContent: 'space-evenly'}}>
-                {/* <Col xs={2}> */}
-                <Link style={{color: 'white'}} to="/home">
-                  <Button variant="outline-light">home</Button>
-                </Link>
-                <Link style={{color: 'white'}} to="/mood">
-                  <Button variant="outline-light">mood</Button>
-                </Link>
+    //If user is on a desktop/laptop
+    if (this.state.isMobile === false) {
+      if (this.props.isLoggedIn) {
+        return (
+          <div>
+            <Nav
+              style={{
+                backgroundColor: '#24292e',
+                justifyContent: 'center',
+                boxShadow: '1px 1px 1px grey',
+                fontFamily: 'serif'
+              }}
+            >
+              <div>
+                {/* The navbar will show these links after you log in */}
+                <Row style={{justifyContent: 'space-evenly'}}>
+                  {/* <Col xs={2}> */}
+                  <Link style={{color: 'white'}} to="/home">
+                    <Button variant="outline-light">home</Button>
+                  </Link>
+                  <Link style={{color: 'white'}} to="/mood">
+                    <Button variant="outline-light">mood</Button>
+                  </Link>
 
-                {/* The navbar will show these links before you log in */}
+                  {/* The navbar will show these links before you log in */}
 
-                <Link style={{color: 'white'}} to="/programming">
-                  <Button variant="outline-light">programming</Button>
-                </Link>
+                  <Link style={{color: 'white'}} to="/programming">
+                    <Button variant="outline-light">programming</Button>
+                  </Link>
 
-                <Link to="/thoughts" style={{color: 'white'}}>
-                  <Button variant="outline-light">thoughts</Button>
-                </Link>
-                <Link style={{color: 'white'}} to="/info">
-                  <Button variant="outline-light">info</Button>
-                </Link>
+                  <Link to="/thoughts" style={{color: 'white'}}>
+                    <Button variant="outline-light">thoughts</Button>
+                  </Link>
+                  <Link style={{color: 'white'}} to="/info">
+                    <Button variant="outline-light">info</Button>
+                  </Link>
 
-                <a href="#" onClick={this.props.handleClick}>
-                  <Button variant="outline-light"> logout</Button>
-                </a>
-              </Row>
-            </div>
-          </Nav>
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          <Nav
-            style={{
-              backgroundColor: '#24292e',
-              justifyContent: 'center',
-              boxShadow: '1px 1px 1px grey',
-              fontFamily: 'serif'
-            }}
-          >
-            <div>
-              <Row style={{justifyContent: 'space-evenly'}}>
-                {/* <Col xs={2}> */}
-                <Link style={{color: 'white'}} to="/home">
-                  <Button variant="outline-light">home</Button>
-                </Link>
-                <Link style={{color: 'white'}} to="/mood">
-                  <Button variant="outline-light">mood</Button>
-                </Link>
+                  <a href="#" onClick={this.props.handleClick}>
+                    <Button variant="outline-light"> logout</Button>
+                  </a>
+                </Row>
+              </div>
+            </Nav>
+          </div>
+        )
+      } else {
+        return (
+          <div>
+            <Nav
+              style={{
+                backgroundColor: '#24292e',
+                justifyContent: 'center',
+                boxShadow: '1px 1px 1px grey',
+                fontFamily: 'serif'
+              }}
+            >
+              <div>
+                <Row style={{justifyContent: 'space-evenly'}}>
+                  {/* <Col xs={2}> */}
+                  <Link style={{color: 'white'}} to="/home">
+                    <Button variant="outline-light">home</Button>
+                  </Link>
+                  <Link style={{color: 'white'}} to="/mood">
+                    <Button variant="outline-light">mood</Button>
+                  </Link>
 
-                {/* The navbar will show these links before you log in */}
+                  {/* The navbar will show these links before you log in */}
 
-                <Link style={{color: 'white'}} to="/programming">
-                  <Button variant="outline-light">programming</Button>
-                </Link>
+                  <Link style={{color: 'white'}} to="/programming">
+                    <Button variant="outline-light">programming</Button>
+                  </Link>
 
-                <Link to="/thoughts" style={{color: 'white'}}>
-                  <Button variant="outline-light">thoughts</Button>
-                </Link>
-                <Link style={{color: 'white'}} to="/info">
-                  <Button variant="outline-light">info</Button>
-                </Link>
-              </Row>
-            </div>
-            )
-          </Nav>
-        </div>
-      )
+                  <Link to="/thoughts" style={{color: 'white'}}>
+                    <Button variant="outline-light">thoughts</Button>
+                  </Link>
+                  <Link style={{color: 'white'}} to="/info">
+                    <Button variant="outline-light">info</Button>
+                  </Link>
+                </Row>
+              </div>
+              )
+            </Nav>
+          </div>
+        )
+      }
     }
+
+    //if a user is on mobile
+
+    return <MobileNavBar />
   }
 }
 
