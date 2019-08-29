@@ -27,12 +27,20 @@ describe('Mood routes', () => {
     //get moods in the shape of an array of objects [{}, {}, {}]
     //use offset to simulate a get request for the inital 10 moods
     it('GET /api/moods/offset/0', async () => {
-      const res = await request(app)
+      const get = await request(app)
         .get('/api/moods/offset/0')
         .expect(200)
 
-      expect(res.body).to.be.an('array')
-      expect(res.body[0].type).to.be.equal('VIDEO')
+      expect(get.body).to.be.an('array')
+      expect(get.body[0].type).to.be.equal('VIDEO')
+    })
+
+    it('DELETE /api/moods/', async () => {
+      const delMoods = await request(app)
+        .delete('/api/moods/1')
+        .expect(200)
+      expect(delMoods.body).to.be.an('array')
+      expect(delMoods.body[0]).to.be.equal(undefined)
     })
   })
 })
