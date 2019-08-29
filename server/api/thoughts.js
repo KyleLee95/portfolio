@@ -52,7 +52,7 @@ router.post('/', async (req, res, next) => {
       title: req.body.title,
       content: req.body.content
     })
-    const thoughts = Thought.findAll()
+    const thoughts = await Thought.findAll()
     res.json(thoughts)
   } catch (err) {
     next(err)

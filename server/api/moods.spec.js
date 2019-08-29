@@ -13,10 +13,6 @@ describe('Mood routes', () => {
   })
 
   describe('/api/moods/', () => {
-    // const moodExample = {
-    //   type: 'VIDEO',
-    //   url: 'https://www.youtube.com/watch?v=_1c1zhV3vHk'
-    // }
     //Creates the mood
     beforeEach(() => {
       return Mood.create({
@@ -24,6 +20,24 @@ describe('Mood routes', () => {
         type: 'VIDEO'
       })
     })
+
+    it('POST /api/moods/', async () => {
+      const mood = {
+        type: 'VIDEO',
+        url: 'https://www.youtube.com/watch?v=2pIJoPkh9IU'
+      }
+      //create the new mood
+      const createMood = await request(app)
+        .post('/api/moods/')
+        .send(mood)
+        .expect(200)
+
+      expect(createMood.body).to.be.an('array')
+      expect(createMood.body).to.have.lengthOf(2)
+      expect(createMood.body[1]).to.be.an('object')
+      expect(createMood.body[1]).to.have.property('url')
+    })
+
     //get moods in the shape of an array of objects [{}, {}, {}]
     //use offset to simulate a get request for the inital 10 moods
     it('GET /api/moods/offset/0', async () => {

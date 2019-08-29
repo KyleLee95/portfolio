@@ -62,13 +62,12 @@ router.put('/edit/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     await Mood.create({
-      title: req.body.title,
       type: req.body.type,
       url: req.body.url,
       image: req.body.image
     })
-    const moods = Mood.findAll()
-    res.json(moods)
+    const moods = await Mood.findAll()
+    res.status(200).send(moods)
   } catch (err) {
     next(err)
   }
