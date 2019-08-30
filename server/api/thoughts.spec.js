@@ -1,4 +1,4 @@
-const {expect, should} = require('chai')
+const {expect} = require('chai')
 const request = require('supertest')
 const db = require('../db')
 const app = require('../index')
@@ -18,7 +18,6 @@ describe('Thought routes', () => {
         content: 'testing 123'
       })
     })
-
     it('POST /api/thoughts/', async () => {
       const thought = {
         title: 'test another thought title',

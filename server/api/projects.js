@@ -58,8 +58,8 @@ router.post('/', async (req, res, next) => {
       deployLink: req.body.deployLink,
       image: req.body.image
     })
-    const projects = Project.findAll()
-    res.json(projects)
+    const projects = await Project.findAll()
+    res.status(200).send(projects)
   } catch (err) {
     next(err)
   }
