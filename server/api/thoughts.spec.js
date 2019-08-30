@@ -53,6 +53,7 @@ describe('Thought routes', () => {
         .expect(200)
       expect(delThoughts.body).to.be.an('array')
       expect(delThoughts.body[0]).to.be.equal(undefined)
+      expect(delThoughts.body).to.have.length(0)
     })
   })
 })
