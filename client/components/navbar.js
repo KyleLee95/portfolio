@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
-import {Navbar as Nav, Button, Row, Col} from 'react-bootstrap'
+import {Navbar, Nav, Button, Row, Col} from 'react-bootstrap'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {MobileNavBar} from '.'
 
-export class Navbar extends Component {
+export class NavBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -29,95 +29,126 @@ export class Navbar extends Component {
   }
   render() {
     //If user is on a desktop/laptop
-    if (this.state.isMobile === false) {
-      if (this.props.isLoggedIn) {
-        return (
-          <div>
+
+    if (this.props.isLoggedIn) {
+      return (
+        // <div>
+        <Navbar
+          style={{
+            backgroundColor: '#24292e',
+            justifyContent: 'center',
+            boxShadow: '1px 1px 1px grey',
+            fontFamily: 'serif'
+          }}
+          collapseOnSelect
+          bg="dark"
+          variant="dark"
+          expand="lg"
+        >
+          <Navbar.Toggle
+            aria-controls="responsive-navbar-nav"
+            style={{justifyContent: 'center'}}
+          />
+          <Navbar.Collapse
+            id="basic-navbar-nav"
+            style={{justifyContent: 'center'}}
+          >
             <Nav
-              style={{
-                backgroundColor: '#24292e',
-                justifyContent: 'center',
-                boxShadow: '1px 1px 1px grey',
-                fontFamily: 'serif'
-              }}
+              // className="mr-auto myNavLink"
+              style={{justifyContent: 'center'}}
             >
-              <div>
-                {/* The navbar will show these links after you log in */}
-                <Row style={{justifyContent: 'space-evenly'}}>
-                  {/* <Col xs={2}> */}
-                  <Link style={{color: 'white'}} to="/home">
-                    <Button variant="outline-light">home</Button>
-                  </Link>
-                  <Link style={{color: 'white'}} to="/mood">
-                    <Button variant="outline-light">mood</Button>
-                  </Link>
+              {/* <div style={{justifyContent: 'center'}}> */}
+              {/* The navbar will show these links after you log in */}
+              {/* <Row style={{justifyContent: 'center'}}> */}
+              {/* <Col xs={2}> */}
+              <Link style={{color: 'white'}} to="/home">
+                <Button variant="outline-light">home</Button>
+              </Link>
+              <Link style={{color: 'white'}} to="/mood">
+                <Button variant="outline-light">mood</Button>
+              </Link>
 
-                  {/* The navbar will show these links before you log in */}
+              {/* The navbar will show these links before you log in */}
 
-                  <Link style={{color: 'white'}} to="/programming">
-                    <Button variant="outline-light">programming</Button>
-                  </Link>
+              <Link style={{color: 'white'}} to="/programming">
+                <Button variant="outline-light">programming</Button>
+              </Link>
 
-                  <Link to="/thoughts" style={{color: 'white'}}>
-                    <Button variant="outline-light">thoughts</Button>
-                  </Link>
-                  <Link style={{color: 'white'}} to="/info">
-                    <Button variant="outline-light">info</Button>
-                  </Link>
+              <Link to="/thoughts" style={{color: 'white'}}>
+                <Button variant="outline-light">thoughts</Button>
+              </Link>
+              <Link style={{color: 'white'}} to="/info">
+                <Button variant="outline-light">info</Button>
+              </Link>
 
-                  <a href="#" onClick={this.props.handleClick}>
-                    <Button variant="outline-light"> logout</Button>
-                  </a>
-                </Row>
-              </div>
+              <a href="#" onClick={this.props.handleClick}>
+                <Button variant="outline-light"> logout</Button>
+              </a>
             </Nav>
-          </div>
-        )
-      } else {
-        return (
-          <div>
+            {/* </Row> */}
+            {/* </div> */}
+          </Navbar.Collapse>
+        </Navbar>
+      )
+    } else {
+      //not logged in
+      return (
+        // <div>
+        <Navbar
+          style={{
+            backgroundColor: '#24292e',
+            alignContent: 'center',
+            boxShadow: '1px 1px 1px grey',
+            fontFamily: 'serif'
+          }}
+          collapseOnSelect
+          bg="dark"
+          variant="dark"
+          expand="lg"
+        >
+          <Navbar.Toggle
+            aria-controls="responsive-navbar-nav"
+            style={{justifyContent: 'center'}}
+          />
+          <Navbar.Collapse
+            id="basic-navbar-nav"
+            style={{justifyContent: 'center'}}
+          >
             <Nav
-              style={{
-                backgroundColor: '#24292e',
-                justifyContent: 'center',
-                boxShadow: '1px 1px 1px grey',
-                fontFamily: 'serif'
-              }}
+              style={{justifyContent: 'center'}}
+              // className="mr-auto myNavLink"
             >
-              <div>
-                <Row style={{justifyContent: 'space-evenly'}}>
-                  {/* <Col xs={2}> */}
-                  <Link style={{color: 'white'}} to="/home">
-                    <Button variant="outline-light">home</Button>
-                  </Link>
-                  <Link style={{color: 'white'}} to="/mood">
-                    <Button variant="outline-light">mood</Button>
-                  </Link>
+              {/* <div style={{justifyContent: 'center'}}> */}
+              {/* <Row style={{justifyContent: 'center'}}> */}
+              {/* <Col xs={2}> */}
+              <Link style={{color: 'white'}} to="/home">
+                <Button variant="outline-light">home</Button>
+              </Link>
+              <Link style={{color: 'white'}} to="/mood">
+                <Button variant="outline-light">mood</Button>
+              </Link>
 
-                  {/* The navbar will show these links before you log in */}
+              {/* The navbar will show these links before you log in */}
 
-                  <Link style={{color: 'white'}} to="/programming">
-                    <Button variant="outline-light">programming</Button>
-                  </Link>
+              <Link style={{color: 'white'}} to="/programming">
+                <Button variant="outline-light">programming</Button>
+              </Link>
 
-                  <Link to="/thoughts" style={{color: 'white'}}>
-                    <Button variant="outline-light">thoughts</Button>
-                  </Link>
-                  <Link style={{color: 'white'}} to="/info">
-                    <Button variant="outline-light">info</Button>
-                  </Link>
-                </Row>
-              </div>
-              )
+              <Link to="/thoughts" style={{color: 'white'}}>
+                <Button variant="outline-light">thoughts</Button>
+              </Link>
+              <Link style={{color: 'white'}} to="/info">
+                <Button variant="outline-light">info</Button>
+              </Link>
+              {/* <Col xs={2}> */}
+              {/* </Row> */}
+              {/* </div> */}
             </Nav>
-          </div>
-        )
-      }
+          </Navbar.Collapse>
+        </Navbar>
+        // </div>
+      )
     }
-
-    //if a user is on mobile
-
-    return <MobileNavBar />
   }
 }
 
@@ -208,12 +239,12 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default connect(mapState, mapDispatch)(NavBar)
 
 /**
  * PROP TYPES
  */
-Navbar.propTypes = {
-  handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
-}
+// Navbar.propTypes = {
+//   handleClick: PropTypes.func.isRequired,
+//   isLoggedIn: PropTypes.bool.isRequired
+// }

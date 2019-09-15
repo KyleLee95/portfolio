@@ -35,7 +35,7 @@ class Routes extends Component {
         <Route exact path="/thought/:id" component={SingleThought} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/manager" component={ConnectedContentManager} />
+
         <Route path="/programming" component={ConnectedProgramming} />
         <Route path="/info" component={About} />
         <Route path="/mood" component={Mood} />
@@ -43,6 +43,7 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
+            <Route path="/manager" component={ConnectedContentManager} />
             <Route path="/home" component={ConnectedContentManager} />
             <Route
               exact
