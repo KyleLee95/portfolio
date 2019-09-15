@@ -43,7 +43,7 @@ export class NavBar extends Component {
           collapseOnSelect
           bg="dark"
           variant="dark"
-          expand="sm"
+          expand="md"
         >
           <Navbar.Toggle
             aria-controls="responsive-navbar-nav"
@@ -104,7 +104,7 @@ export class NavBar extends Component {
           collapseOnSelect
           bg="dark"
           variant="dark"
-          expand="sm"
+          expand="lg"
         >
           <Navbar.Toggle
             aria-controls="responsive-navbar-nav"
