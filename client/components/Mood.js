@@ -37,7 +37,8 @@ export class Mood extends Component {
   }
   //Used for infinite scrolling feed
   async loadMore() {
-    let scrollMoods = await axios.get(`/api/moods/offSet/${this.state.offSet}`)
+    let offset = this.state.offSet
+    let scrollMoods = await axios.get(`/api/moods/offSet/${offset}`)
 
     let allMoods = [...scrollMoods.data, ...this.state.moods]
     //put all the moods in an array to and create an array from a set in order to double check
