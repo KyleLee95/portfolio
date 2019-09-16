@@ -18,7 +18,7 @@ export class ContentManagerMoodContainer extends Component {
   }
 
   async componentDidMount() {
-    const moods = await axios.get('/api/moods/offSet/10000')
+    const moods = await axios.get('/api/moods/managerMood')
     this.setState({
       moods: moods.data
     })
@@ -39,7 +39,6 @@ export class ContentManagerMoodContainer extends Component {
       reader.readAsDataURL(image)
       const type = this.state.type
       const url = this.state.url
-      console.log(reader.result)
       reader.onload = async function() {
         await axios.post('/api/moods', {
           type: type,
@@ -58,10 +57,11 @@ export class ContentManagerMoodContainer extends Component {
       image: null
     })
 
-    const moods = await axios.get('/api/moods/offSet/0')
+    const moods = await axios.get('/api/moods/managerMoods')
     this.setState({
       moods: moods.data
     })
+    console.log(moods)
   }
 
   async delete(mood) {

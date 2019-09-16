@@ -27,9 +27,10 @@ export class Mood extends Component {
     window.addEventListener('scroll', () => {
       // uses the container where elements (scroller) are being added
       // dividing by 4 was just a nice numnber that seems to work very well.
-      const height = document.getElementById('scroller').clientHeight / 4
+      const height = document.getElementById('scroller').clientHeight / 10
       if (Number(window.pageYOffset) >= Number(height)) {
         //calls loadMore which, suprise, loads more content
+
         this.loadMore()
       }
     })

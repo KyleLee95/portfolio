@@ -5,6 +5,17 @@ const Op = Sequelize.Op
 
 module.exports = router
 
+router.get('/managerMood', async (req, res, next) => {
+  try {
+    //gets all moods for manager
+    const moods = await Mood.findAll({})
+
+    res.json(moods).status(200)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.get('/offSet/:offSet', async (req, res, next) => {
   try {
     //Sequelize's offSet featuer wasn't working so this is my own ghetto offSet
