@@ -34,6 +34,10 @@ export class ContentManagerMoodContainer extends Component {
     e.preventDefault()
     var image = document.getElementById('image').files[0]
     // Check to see if image is undefined. If it is, then skip base64 encoding
+    if (this.state.type === null || this.state.type === undefined) {
+      alert('select a type')
+      return
+    }
     if (image !== undefined) {
       var reader = new FileReader()
       reader.readAsDataURL(image)
@@ -57,7 +61,7 @@ export class ContentManagerMoodContainer extends Component {
       })
     }
 
-    const moods = await axios.get('/api/moods/managerMoods')
+    const moods = await axios.get('/api/moods/managerMood')
     this.setState({
       moods: moods.data
     })
