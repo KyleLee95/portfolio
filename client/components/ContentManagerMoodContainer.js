@@ -74,23 +74,22 @@ export class ContentManagerMoodContainer extends Component {
   render() {
     if (this.state.moods[0] === undefined) {
       return (
-        // <Row>
-        //   <Col
-        //     className="text-center"
-        //     style={{padding: 10}}
-        //     xs={12}
-        //     lg={{offset: 3, span: 6}}
-        //   >
-        //     <h1>Mood Form</h1>
-        //     <MoodForm
-        //       mood={this.state.mood}
-        //       handleChange={this.handleChange}
-        //       handleSubmit={this.handleSubmit}
-        //       handleQuill={this.handleQuill}
-        //     />
-        //   </Col>
-        // </Row>
-        null
+        <Row>
+          <Col
+            className="text-center"
+            style={{padding: 10}}
+            xs={12}
+            lg={{offset: 3, span: 6}}
+          >
+            <h1>Mood Form</h1>
+            <MoodForm
+              mood={this.state.mood}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+              handleQuill={this.handleQuill}
+            />
+          </Col>
+        </Row>
       )
     }
 
