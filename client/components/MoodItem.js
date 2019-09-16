@@ -1,10 +1,11 @@
 import React from 'react'
-import {Image as BsImage} from 'react-bootstrap'
+import {Image as BsImage, Button} from 'react-bootstrap'
 import ReactPlayer from 'react-player'
 
 export const MoodItem = props => {
   const {content} = props
   //image
+
   if (content.type === 'IMAGE') {
     var image = new Image()
     image.src = content.image

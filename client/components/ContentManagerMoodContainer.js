@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Row, Col, Image} from 'react-bootstrap'
+import {Row, Col, Button} from 'react-bootstrap'
 import {MoodForm, MoodItem} from '.'
 import axios from 'axios'
 
@@ -32,14 +32,14 @@ export class ContentManagerMoodContainer extends Component {
 
   async handleSubmit(e) {
     e.preventDefault()
-    var image = document.getElementById('file').files[0]
+    var image = document.getElementById('image').files[0]
     // Check to see if image is undefined. If it is, then skip base64 encoding
     if (image !== undefined) {
       var reader = new FileReader()
       reader.readAsDataURL(image)
       const type = this.state.type
       const url = this.state.url
-      // console.log(reader.result)
+      console.log(reader.result)
       reader.onload = async function() {
         await axios.post('/api/moods', {
           type: type,
@@ -51,7 +51,7 @@ export class ContentManagerMoodContainer extends Component {
         console.log('Error: ', error)
       }
     }
-    //for none images
+
     await axios.post('/api/moods', {
       type: this.state.type,
       url: this.state.url,
@@ -92,6 +92,7 @@ export class ContentManagerMoodContainer extends Component {
         </Row>
       )
     }
+
     return (
       <div className="container-fluid" style={{fontFamily: 'serif'}}>
         <Row>
@@ -119,13 +120,18 @@ export class ContentManagerMoodContainer extends Component {
             xs={12}
             lg={{offset: 3, span: 6}}
           >
-            {/* {this.state.moods
+            {this.state.moods
               .sort((a, b) => {
                 return b.id - a.id
               })
               .map(mood => {
-                return <MoodItem content={mood} key={mood.id} />
-              })} */}
+                return (
+                  <div key={mood.id}>
+                    <MoodItem content={mood} />
+                    <Button onClick={() => this.delete(mood)}>Delete</Button>
+                  </div>
+                )
+              })}
           </Col>
         </Row>
       </div>
