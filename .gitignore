@@ -1,5 +1,5 @@
 node_modules
-seed.js
+
 public/bundle.js
 public/bundle.js.map
 secrets.js
