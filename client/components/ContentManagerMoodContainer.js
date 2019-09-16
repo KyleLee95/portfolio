@@ -18,7 +18,7 @@ export class ContentManagerMoodContainer extends Component {
   }
 
   async componentDidMount() {
-    const moods = await axios.get('/api/moods/offSet/0')
+    const moods = await axios.get('/api/moods/offSet/10000')
     this.setState({
       moods: moods.data
     })
