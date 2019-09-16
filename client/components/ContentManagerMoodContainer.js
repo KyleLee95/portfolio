@@ -49,19 +49,18 @@ export class ContentManagerMoodContainer extends Component {
       reader.onerror = function(error) {
         console.log('Error: ', error)
       }
+    } else {
+      await axios.post('/api/moods', {
+        type: this.state.type,
+        url: this.state.url,
+        image: null
+      })
     }
-
-    await axios.post('/api/moods', {
-      type: this.state.type,
-      url: this.state.url,
-      image: null
-    })
 
     const moods = await axios.get('/api/moods/managerMoods')
     this.setState({
       moods: moods.data
     })
-    console.log(moods)
   }
 
   async delete(mood) {
